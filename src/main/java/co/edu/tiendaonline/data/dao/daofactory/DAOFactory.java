@@ -2,8 +2,31 @@ package co.edu.tiendaonline.data.dao.daofactory;
 
 import co.edu.tiendaonline.data.dao.ClienteDAO;
 import co.edu.tiendaonline.data.dao.TipoIdentificacionDAO;
+import co.edu.tiendaonline.data.dao.daofactory.concrete.SQLServerDAOFactory;
 
 public abstract class DAOFactory {
+	
+	public static final DAOFactory obtenerDAOFactory(final TipoDAOFactory factoria) {
+		switch (factoria) {
+		case SQLSERVER: {
+			return new SQLServerDAOFactory();
+		}
+		case POSTGRESSQL: {
+			//TODO Falta mejorar manejo de exepciones customizadas
+			throw new RuntimeException("POSTGRESSQL no soportada");
+		}
+		case MYSQL: {
+			//TODO Falta mejorar manejo de exepciones customizadas
+			throw new RuntimeException("MYSQL no soportada");
+		}
+		case ORACLE: {
+			//TODO Falta mejorar manejo de exepciones customizadas
+			throw new RuntimeException("ORACLE no soportada");
+		}
+		default:
+			throw new RuntimeException(factoria + " no soportada");
+		}
+	}
 	
 	protected abstract void abrirConexion();
 	
