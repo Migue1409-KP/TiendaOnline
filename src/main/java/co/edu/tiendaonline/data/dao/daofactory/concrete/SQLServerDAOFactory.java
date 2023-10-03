@@ -1,6 +1,8 @@
 package co.edu.tiendaonline.data.dao.daofactory.concrete;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import co.edu.tiendaonline.data.dao.ClienteDAO;
 import co.edu.tiendaonline.data.dao.TipoIdentificacionDAO;
@@ -18,32 +20,59 @@ public final class SQLServerDAOFactory extends DAOFactory {
 	
 	@Override
 	protected final void abrirConexion() {
-		// TODO assign connection 
-		conexion = null;
+        try {
+            String url = "jdbc:sqlserver://<server>:<port>;databaseName=<database>";
+            String user = "<username>";
+            String password = "<password>";
+            conexion = DriverManager.getConnection(url, user, password);
+        } catch (SQLException e) {
+            //TODO create personalized exception
+        }
 	}
 
 	@Override
 	public final void cerarConexion() {
-		// TODO close connection
+        try {
+            if (conexion != null && !conexion.isClosed()) {
+                conexion.close();
+            }
+        } catch (SQLException e) {
+            //TODO create personalized exception
+        }
 		
 	}
 
 	@Override
 	public final void iniciarTransaccion() {
-		// TODO ionizer transaction
-		
+        try {
+            if (conexion != null && !conexion.getAutoCommit()) {
+                conexion.setAutoCommit(false);
+            }
+        } catch (SQLException e) {
+            //TODO create personalized exception
+        }
 	}
 
 	@Override
 	public final void confirmarTransaccion() {
-		// TODO commit transaction
-		
+        try {
+            if (conexion != null && !conexion.getAutoCommit()) {
+                conexion.commit();
+            }
+        } catch (SQLException e) {
+            //TODO create personalized exception
+        }
 	}
 
 	@Override
 	public final void cancelarTransaccion() {
-		// TODO rollback transaction
-		
+        try {
+            if (conexion != null && !conexion.getAutoCommit()) {
+                conexion.rollback();
+            }
+        } catch (SQLException e) {
+            //TODO create personalized exception
+        }
 	}
 
 	@Override
