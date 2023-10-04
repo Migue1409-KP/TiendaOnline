@@ -12,15 +12,15 @@ public abstract class DAOFactory {
 			return new SQLServerDAOFactory();
 		}
 		case POSTGRESSQL: {
-			//TODO Falta mejorar manejo de exepciones customizadas
+			//TODO improve customized exceptions
 			throw new RuntimeException("POSTGRESSQL no soportada");
 		}
 		case MYSQL: {
-			//TODO Falta mejorar manejo de exepciones customizadas
+			//TODO improve customized exceptions
 			throw new RuntimeException("MYSQL no soportada");
 		}
 		case ORACLE: {
-			//TODO Falta mejorar manejo de exepciones customizadas
+			//TODO improve customized exceptions
 			throw new RuntimeException("ORACLE no soportada");
 		}
 		default:
