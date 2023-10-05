@@ -1,8 +1,12 @@
 package co.edu.tiendaonline.data.dao.daofactory;
 
+import co.edu.tiendaonline.crosscutting.exception.concrete.DataTiendaOnlineException;
+import co.edu.tiendaonline.crosscutting.messages.CatologoMensajes;
+import co.edu.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
 import co.edu.tiendaonline.data.dao.ClienteDAO;
 import co.edu.tiendaonline.data.dao.TipoIdentificacionDAO;
 import co.edu.tiendaonline.data.dao.daofactory.concrete.SQLServerDAOFactory;
+import co.edu.tiendaonline.data.dao.daofactory.enumerator.TipoDAOFactory;
 
 public abstract class DAOFactory {
 	
@@ -12,25 +16,30 @@ public abstract class DAOFactory {
 			return new SQLServerDAOFactory();
 		}
 		case POSTGRESSQL: {
-			//TODO improve customized exceptions
-			throw new RuntimeException("POSTGRESSQL no soportada");
+			var mensajeUsuario = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000026);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		case MYSQL: {
-			//TODO improve customized exceptions
-			throw new RuntimeException("MYSQL no soportada");
+			var mensajeUsuario = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000026);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		case ORACLE: {
-			//TODO improve customized exceptions
-			throw new RuntimeException("ORACLE no soportada");
+			var mensajeUsuario = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000026);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		default:
-			throw new RuntimeException(factoria + " no soportada");
+			var mensajeUsuario = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000026);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 	}
 	
 	protected abstract void abrirConexion();
 	
-	public abstract void cerarConexion();
+	public abstract void cerrarConexion();
 	
 	public abstract void iniciarTransaccion();
 	

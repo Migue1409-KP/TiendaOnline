@@ -1,36 +1,28 @@
 package co.edu.tiendaonline.data.dao.base;
 
 import java.sql.Connection;
-import java.util.logging.Logger;
-import java.util.logging.Level;
-import java.sql.SQLException;
+
+import co.edu.tiendaonline.crosscutting.exception.concrete.DataTiendaOnlineException;
+import co.edu.tiendaonline.crosscutting.messages.CatologoMensajes;
+import co.edu.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
+import co.edu.tiendaonline.crosscutting.util.UtilSQL;
+
 
 public class SQLDAO {
 	private Connection conexion;
-	private static final Logger logger = Logger.getLogger(SQLDAO.class.getName());
 	
 	protected SQLDAO (final Connection conexion) {
 		setConexion(conexion);
 	}
 
 	private final void setConexion(final Connection conexion) {
-        try {
-        	if (conexion == null) {
-        		throw new IllegalArgumentException("La conexión no puede ser nula.");
-        	}
-            if (conexion.isClosed()) {
-                throw new IllegalArgumentException("La conexión está cerrada.");
-            }
-
-            if (conexion.getAutoCommit()) {
-                throw new IllegalArgumentException("La conexión ha confirmado la transacción.");
-            }
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "Error al verificar la conexión", e);
-            throw new RuntimeException("Error al verificar la conexión", e);
+        if(!UtilSQL.conexionAbierta(conexion)) {
+			var mensajeUsuario = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000027);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);		
         }
         
-		this.conexion = conexion;
+        this.conexion = conexion;
 	}
 	
 	protected final Connection getConexion() {

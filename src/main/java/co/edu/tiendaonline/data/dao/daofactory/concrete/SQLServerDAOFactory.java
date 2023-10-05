@@ -3,10 +3,12 @@ package co.edu.tiendaonline.data.dao.daofactory.concrete;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import co.edu.tiendaonline.data.dao.daofactory.concrete.SQLServerDAOFactory;
+import co.edu.tiendaonline.crosscutting.exception.concrete.DataTiendaOnlineException;
+import co.edu.tiendaonline.crosscutting.messages.CatologoMensajes;
+import co.edu.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
+import co.edu.tiendaonline.crosscutting.util.UtilSQL;
 import co.edu.tiendaonline.data.dao.ClienteDAO;
 import co.edu.tiendaonline.data.dao.TipoIdentificacionDAO;
 import co.edu.tiendaonline.data.dao.concrete.sqlserver.ClientesSQLServerDAO;
@@ -16,7 +18,6 @@ import co.edu.tiendaonline.data.dao.daofactory.DAOFactory;
 public final class SQLServerDAOFactory extends DAOFactory {
 
 	private Connection conexion;
-	private static final Logger logger = Logger.getLogger(SQLServerDAOFactory.class.getName());
 	
 	public SQLServerDAOFactory() {
 		abrirConexion();
@@ -25,76 +26,66 @@ public final class SQLServerDAOFactory extends DAOFactory {
 	@Override
 	protected final void abrirConexion() {
         try {
-            String url = "jdbc:sqlserver://<server>:<port>;databaseName=<database>";
-            String user = "<username>";
-            String password = "<password>";
+        	//jdbc:sqlserver://<server>:<port>;encrypt=false;databaseName=<database>;user=<user>:password=<password>
+            String url = System.getenv("DB_URL_TiendaOnline");
+            String user = System.getenv("DB_USER_TiendaOnline");
+            String password = System.getenv("DB_PASSWORD_TiendaOnline");
+            
+            if (url == null || url.isEmpty() || user == null || user.isEmpty() || password == null || password.isEmpty()) {
+    			var mensajeUsuario = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+    			var mensajeTecnico = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000023);
+    			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
+            }
+            
             conexion = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
-            logger.log(Level.SEVERE, "Error al abrir la conexión", e);
-            //TODO Customized exception
-            throw new RuntimeException("Error al abrir la conexión", e);
+			var mensajeUsuario = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000024);
+			throw DataTiendaOnlineException.crear(e, mensajeUsuario, mensajeTecnico);
+        } catch (Exception e) {
+			var mensajeUsuario = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000025);
+			throw DataTiendaOnlineException.crear(e, mensajeUsuario, mensajeTecnico);        	
         }
 	}
 
 	@Override
-	public final void cerarConexion() {
-        try {
-            if (conexion != null && !conexion.isClosed()) {
-                conexion.close();
-            }
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "Error al cerrar la conexión", e);
-            //TODO Customized exception
-            throw new RuntimeException("Error al cerrar la conexión", e);
-        }
+	public final void cerrarConexion() {
+		UtilSQL.cerrarConexion(conexion);
 	}
 
 	@Override
 	public final void iniciarTransaccion() {
-        try {
-            if (conexion != null && !conexion.getAutoCommit()) {
-                conexion.setAutoCommit(false);
-            }
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "Error al iniciar la transacción", e);
-            //TODO Customized exception
-            throw new RuntimeException("Error al iniciar la transacción", e);
-        }
+		UtilSQL.iniciarTransaccion(conexion);
 	}
 
 	@Override
 	public final void confirmarTransaccion() {
-        try {
-            if (conexion != null && !conexion.getAutoCommit()) {
-                conexion.commit();
-            }
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "Error al confirmar la transacción", e);
-            //TODO Customized exception
-            throw new RuntimeException("Error al confirmar la transacción", e);
-        }
+		UtilSQL.confirmarTransaccion(conexion);
 	}
 
 	@Override
 	public final void cancelarTransaccion() {
-        try {
-            if (conexion != null && !conexion.getAutoCommit()) {
-                conexion.rollback();
-            }
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "Error al cancelar la transacción", e);
-            //TODO Customized exception
-            throw new RuntimeException("Error al cancelar la transacción", e);
-        }
+		UtilSQL.cancelarTransaccion(conexion);
 	}
 
 	@Override
 	public ClienteDAO obtenerClienteDAO() {
+        if(!UtilSQL.conexionAbierta(conexion)) {
+			var mensajeUsuario = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000027);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);		
+        }
 		return new ClientesSQLServerDAO(conexion);
 	}
 
 	@Override
 	public TipoIdentificacionDAO obtenerTipoIdentificacionDAO() {
+        if(!UtilSQL.conexionAbierta(conexion)) {
+			var mensajeUsuario = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000027);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);		
+        }
 		return new TipoIdentificacionSQLServerDAO(conexion);
 	}
 
