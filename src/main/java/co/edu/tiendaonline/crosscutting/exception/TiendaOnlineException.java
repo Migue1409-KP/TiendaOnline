@@ -43,10 +43,6 @@ public class TiendaOnlineException extends RuntimeException {
 		this.tieneExcepcionRaiz = tieneExcepcionRaiz;
 	}
 
-	public static final long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
 	public final LugarException getLugar() {
 		return lugar;
 	}
