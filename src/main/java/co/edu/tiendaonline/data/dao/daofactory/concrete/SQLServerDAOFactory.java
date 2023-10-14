@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import co.edu.tiendaonline.data.dao.daofactory.concrete.SQLServerDAOFactory;
 import co.edu.tiendaonline.crosscutting.exception.concrete.DataTiendaOnlineException;
-import co.edu.tiendaonline.crosscutting.messages.CatologoMensajes;
+import co.edu.tiendaonline.crosscutting.messages.CatalogoMensajes;
 import co.edu.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
 import co.edu.tiendaonline.crosscutting.util.UtilSQL;
 import co.edu.tiendaonline.data.dao.ClienteDAO;
@@ -32,19 +32,19 @@ public final class SQLServerDAOFactory extends DAOFactory {
             String password = System.getenv("DB_PASSWORD_TiendaOnline");
             
             if (url == null || url.isEmpty() || user == null || user.isEmpty() || password == null || password.isEmpty()) {
-    			var mensajeUsuario = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
-    			var mensajeTecnico = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000023);
+    			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+    			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000023);
     			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
             }
             
             conexion = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
-			var mensajeUsuario = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
-			var mensajeTecnico = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000024);
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000024);
 			throw DataTiendaOnlineException.crear(e, mensajeUsuario, mensajeTecnico);
         } catch (Exception e) {
-			var mensajeUsuario = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
-			var mensajeTecnico = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000025);
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000025);
 			throw DataTiendaOnlineException.crear(e, mensajeUsuario, mensajeTecnico);        	
         }
 	}
@@ -72,8 +72,8 @@ public final class SQLServerDAOFactory extends DAOFactory {
 	@Override
 	public ClienteDAO obtenerClienteDAO() {
         if(!UtilSQL.conexionAbierta(conexion)) {
-			var mensajeUsuario = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
-			var mensajeTecnico = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000027);
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000027);
 			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);		
         }
 		return new ClientesSQLServerDAO(conexion);
@@ -82,8 +82,8 @@ public final class SQLServerDAOFactory extends DAOFactory {
 	@Override
 	public TipoIdentificacionDAO obtenerTipoIdentificacionDAO() {
         if(!UtilSQL.conexionAbierta(conexion)) {
-			var mensajeUsuario = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
-			var mensajeTecnico = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000027);
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000027);
 			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);		
         }
 		return new TipoIdentificacionSQLServerDAO(conexion);

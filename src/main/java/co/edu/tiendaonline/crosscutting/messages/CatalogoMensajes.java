@@ -9,7 +9,7 @@ import co.edu.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
 import co.edu.tiendaonline.crosscutting.messages.enumerator.TipoMensaje;
 import co.edu.tiendaonline.crosscutting.util.UtilObjeto;
 
-public final class CatologoMensajes {
+public final class CatalogoMensajes {
 	
 	private static final Map<CodigoMensaje, Mensaje> MENSAJES = new HashMap<>();
 	
@@ -17,7 +17,7 @@ public final class CatologoMensajes {
 		cargarMensajes();
 	}
 	
-	private CatologoMensajes() {
+	private CatalogoMensajes() {
 		super();
 	}
 	
@@ -98,6 +98,34 @@ public final class CatologoMensajes {
 				"Se ha presentado un problema tratando de consultar la información del tipo de identificación deseado"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000038, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
 				"Se ha presentado un problema tratando de procesar los datos de una consulta por id un tipo de identificación en la base de datos.Se presento una excepcion de tipo SQLException. Por favor verifique la traza del error presentado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000039, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema tratando de modificar un tipo de identificación en la base de datos.Se presento una excepcion de tipo SQLException. Por favor verifique la traza del error presentado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000040, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema tratando de modificar un tipo de identificación en la base de datos.Se presento una excepcion de tipo Exception. Por favor verifique la traza del error presentado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000041, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema tratando de modificar el tipo de identificación deseado"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000042, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema tratando de eliminar un tipo de identificación en la base de datos.Se presento una excepcion de tipo SQLException. Por favor verifique la traza del error presentado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000043, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema tratando de eliminar un tipo de identificación en la base de datos.Se presento una excepcion de tipo Exception. Por favor verifique la traza del error presentado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000044, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema tratando de eliminar el tipo de identificación deseado"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000045, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema inesperado tratando de procesar los datos de una consulta por id un tipo de identificación en la base de datos.Se presento una excepcion de tipo Exception. Por favor verifique la traza del error presentado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000046, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema tratando de consultar el tipo de identificación deseado"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000047, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema funcion colocarParametrosConsulta en TipoIdentificacionDAO tratando de consultar tipos de identificación.Se presento una excepcion de tipo SQLException. Por favor verifique la traza del error presentado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000048, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema inesperado en funcion colocarParametrosConsulta en TipoIdentificacionDAO tratando de consultar tipos de identificación.Se presento una excepcion de tipo Exception. Por favor verifique la traza del error presentado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000049, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en funcion prepararEjecutarSentenciaConsulta en TipoIdentificacionDAO tratando de consultar tipos de identificación.Se presento una excepcion de tipo SQLException. Por favor verifique la traza del error presentado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000050, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema inesperado en funcion prepararEjecutarSentenciaConsulta en TipoIdentificacionDAO tratando de consultar tipos de identificación.Se presento una excepcion de tipo Exception. Por favor verifique la traza del error presentado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000051, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en funcion ejecutarConsulta en TipoIdentificacionDAO tratando de consultar tipos de identificación.Se presento una excepcion de tipo SQLException. Por favor verifique la traza del error presentado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000052, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema inesperado en funcion ejecutarConsulta en TipoIdentificacionDAO tratando de consultar tipos de identificación.Se presento una excepcion de tipo Exception. Por favor verifique la traza del error presentado..."));
 	}
 	
 	private static final void agregarMensaje(final Mensaje mensaje) {

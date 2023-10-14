@@ -1,7 +1,7 @@
 package co.edu.tiendaonline.data.dao.daofactory;
 
 import co.edu.tiendaonline.crosscutting.exception.concrete.DataTiendaOnlineException;
-import co.edu.tiendaonline.crosscutting.messages.CatologoMensajes;
+import co.edu.tiendaonline.crosscutting.messages.CatalogoMensajes;
 import co.edu.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
 import co.edu.tiendaonline.data.dao.ClienteDAO;
 import co.edu.tiendaonline.data.dao.TipoIdentificacionDAO;
@@ -16,23 +16,23 @@ public abstract class DAOFactory {
 			return new SQLServerDAOFactory();
 		}
 		case POSTGRESSQL: {
-			var mensajeUsuario = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
-			var mensajeTecnico = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000026);
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000026);
 			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		case MYSQL: {
-			var mensajeUsuario = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
-			var mensajeTecnico = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000026);
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000026);
 			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		case ORACLE: {
-			var mensajeUsuario = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
-			var mensajeTecnico = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000026);
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000026);
 			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		default:
-			var mensajeUsuario = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
-			var mensajeTecnico = CatologoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000026);
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000026);
 			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 	}

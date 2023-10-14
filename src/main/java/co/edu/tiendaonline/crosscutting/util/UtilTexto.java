@@ -35,4 +35,12 @@ public final class UtilTexto {
 	public static final boolean igualConTrimIgnoreCase(final String valor1, final String valor2) {
 		return aplicarTrim(valor1).equals(aplicarTrim(valor2));
 	}
+	
+	public static final boolean estaNulo(final String valor) {
+		return UtilObjeto.esNulo(valor);
+	}
+	
+	public static final boolean estaVacio(final String valor) {
+		return igualConTrim(valor, VACIO);
+	}
 }
