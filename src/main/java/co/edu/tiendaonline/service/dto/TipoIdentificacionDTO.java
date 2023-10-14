@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import co.edu.tiendaonline.crosscutting.util.UtilObjeto;
 import co.edu.tiendaonline.crosscutting.util.UtilTexto;
+import co.edu.tiendaonline.crosscutting.util.UtilUUID;
 
 public class TipoIdentificacionDTO {
 
@@ -13,7 +14,7 @@ public class TipoIdentificacionDTO {
 	private boolean estado;
 	
 	public TipoIdentificacionDTO() {
-		setId(new UUID(0L, 0L));
+		setId(UtilUUID.UUIDDEFECTO);
 		setCodigo(UtilTexto.VACIO);
 		setNombre(UtilTexto.VACIO);
 		setEstado(false);
@@ -35,7 +36,7 @@ public class TipoIdentificacionDTO {
 	}
 	
 	public final TipoIdentificacionDTO setId(final UUID id) {
-		this.id = UtilObjeto.obtenerValorDefecto(id, new UUID(0L, 0L));
+		this.id = UtilUUID.obtenerValorDefecto(id, UtilUUID.obtenerValorDefecto(id, id));
 		return this;
 	}
 	
