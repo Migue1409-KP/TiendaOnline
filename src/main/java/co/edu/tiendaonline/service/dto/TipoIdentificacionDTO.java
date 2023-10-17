@@ -36,7 +36,7 @@ public class TipoIdentificacionDTO {
 	}
 	
 	public final TipoIdentificacionDTO setId(final UUID id) {
-		this.id = UtilUUID.obtenerValorDefecto(id, UtilUUID.obtenerValorDefecto(id, id));
+		this.id = UtilUUID.obtenerValorDefecto(id, UtilUUID.obtenerValorDefecto(id, UtilUUID.UUIDDEFECTO));
 		return this;
 	}
 	
@@ -63,7 +63,7 @@ public class TipoIdentificacionDTO {
 	}
 	
 	public final TipoIdentificacionDTO setEstado(final boolean estado) {
-		this.estado = UtilObjeto.obtenerValorDefecto(estado, null);
+		this.estado = UtilObjeto.obtenerValorDefecto(estado, false);
 		return this;
 	}
 }

@@ -1,6 +1,6 @@
 package co.edu.tiendaonline.service.dto;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.UUID;
 
 import co.edu.tiendaonline.crosscutting.util.UtilFecha;
@@ -15,7 +15,7 @@ public class ClienteDTO {
 	private NombreCompletoClienteDTO nombreCompleto;
 	private CorreoElectronicoClienteDTO correoElectronico;
 	private NumeroTelefonoMovilClienteDTO numeroTelefonoMovil;
-	private LocalDate fechaNacimiento;
+	private Date fechaNacimiento;
 	public final UUID getId() {
 		return id;
 	}
@@ -32,7 +32,7 @@ public class ClienteDTO {
 	
 	public ClienteDTO(final UUID id, final TipoIdentificacionDTO tipoIdentificacion, final String identificacion,
 			final NombreCompletoClienteDTO nombreCompleto, final CorreoElectronicoClienteDTO correoElectronico,
-			final NumeroTelefonoMovilClienteDTO numeroTelefonoMovil, final LocalDate fechaNacimiento) {
+			final NumeroTelefonoMovilClienteDTO numeroTelefonoMovil, final Date fechaNacimiento) {
 		setId(id);
 		setTipoIdentificacion(tipoIdentificacion);
 		setIdentificacion(identificacion);
@@ -64,12 +64,12 @@ public class ClienteDTO {
 		return numeroTelefonoMovil;
 	}
 	
-	public final LocalDate getFechaNacimiento() {
+	public final Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 	
 	public final ClienteDTO setId(UUID id) {
-		this.id = UtilUUID.obtenerValorDefecto(id, UtilUUID.obtenerValorDefecto(id, id));
+		this.id = UtilUUID.obtenerValorDefecto(id, UtilUUID.obtenerValorDefecto(id, UtilUUID.UUIDDEFECTO));
 		return this;
 	}
 	
@@ -98,7 +98,7 @@ public class ClienteDTO {
 		return this;
 	}
 	
-	public final ClienteDTO setFechaNacimiento(final LocalDate fechaNacimiento) {
+	public final ClienteDTO setFechaNacimiento(final Date fechaNacimiento) {
 		this.fechaNacimiento = UtilFecha.obtenerValorDefecto(fechaNacimiento, UtilFecha.FECHADEFECTO);
 		return this;
 	}

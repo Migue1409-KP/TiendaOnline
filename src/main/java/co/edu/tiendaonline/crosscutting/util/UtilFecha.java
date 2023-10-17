@@ -1,10 +1,10 @@
 package co.edu.tiendaonline.crosscutting.util;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.Objects;
 
 public class UtilFecha {
-    public static final LocalDate FECHADEFECTO = LocalDate.of(2500, 12, 31);
+    public static final Date FECHADEFECTO = Date.valueOf("2500-12-31");
 
     private UtilFecha() {
         super();
@@ -14,7 +14,8 @@ public class UtilFecha {
         return Objects.isNull(objeto);
     }
 
-    public static final LocalDate obtenerValorDefecto(final LocalDate fecha, final LocalDate valorDefecto) {
+    public static final Date obtenerValorDefecto(final Date fecha, final Date valorDefecto) {
         return esNulo(fecha) ? valorDefecto : fecha;
     }
 }
+

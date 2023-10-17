@@ -30,12 +30,12 @@ public class CorreoElectronicoClienteDTO {
 	}
 
 	public final CorreoElectronicoClienteDTO setCorreoElectronico(final String correoElectronico) {
-		this.correoElectronico = UtilTexto.obtenerValorDefecto(UtilTexto.aplicarTrim(correoElectronico), "");
+		this.correoElectronico = UtilTexto.obtenerValorDefecto(UtilTexto.aplicarTrim(correoElectronico), UtilTexto.VACIO);
 		return this;
 	}
 
 	public final CorreoElectronicoClienteDTO setCorreoElectronicoConfirmado(final boolean correoElectronicoConfirmado) {
-		this.correoElectronicoConfirmado = UtilObjeto.obtenerValorDefecto(correoElectronicoConfirmado, null);
+		this.correoElectronicoConfirmado = UtilObjeto.obtenerValorDefecto(correoElectronicoConfirmado, false);
 		return this;
 	}
 }

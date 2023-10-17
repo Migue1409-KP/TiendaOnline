@@ -35,7 +35,7 @@ public class NumeroTelefonoMovilClienteDTO {
 	}
 
 	public final NumeroTelefonoMovilClienteDTO setNumeroTelefonoMovilConfirmado(final boolean numeroTelefonoMovilConfirmado) {
-		this.numeroTelefonoMovilConfirmado = UtilObjeto.obtenerValorDefecto(numeroTelefonoMovilConfirmado, null);
+		this.numeroTelefonoMovilConfirmado = UtilObjeto.obtenerValorDefecto(numeroTelefonoMovilConfirmado, false);
 		return this;
 	}
 	
