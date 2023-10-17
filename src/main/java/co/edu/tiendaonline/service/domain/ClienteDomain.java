@@ -3,23 +3,33 @@ package co.edu.tiendaonline.service.domain;
 import java.sql.Date;
 import java.util.UUID;
 
+import co.edu.tiendaonline.crosscutting.util.UtilFecha;
+import co.edu.tiendaonline.crosscutting.util.UtilObjeto;
+import co.edu.tiendaonline.crosscutting.util.UtilTexto;
 import co.edu.tiendaonline.crosscutting.util.UtilUUID;
-import co.edu.tiendaonline.data.entity.support.CorreoElectronicoClienteEntity;
-import co.edu.tiendaonline.data.entity.support.NombreCompletoClienteEntity;
-import co.edu.tiendaonline.data.entity.support.NumeroTelefonoMovilClienteEntity;
 
 public class ClienteDomain {
 	private UUID id;
 	private TipoIdentificacionDomain tipoIdentificacion;
 	private String identificacion;
-	private NombreCompletoClienteEntity nombreCompleto;
-	private CorreoElectronicoClienteEntity correoElectronico;
-	private NumeroTelefonoMovilClienteEntity numeroTelefonoMovil;
+	private NombreCompletoClienteDomain nombreCompleto;
+	private CorreoElectronicoClienteDomain correoElectronico;
+	private NumeroTelefonoMovilClienteDomain numeroTelefonoMovil;
 	private Date fechaNacimiento;
 	
+	private ClienteDomain() {
+		setId(UtilUUID.UUIDDEFECTO);
+		setTipoIdentificacion(new TipoIdentificacionDomain());
+		setIdentificacion(UtilTexto.VACIO);
+		setNombreCompleto(new NombreCompletoClienteDomain());
+		setCorreoElectronico(new CorreoElectronicoClienteDomain());
+		setNumeroTelefonoMovil(new NumeroTelefonoMovilClienteDomain());
+		setFechaNacimiento(UtilFecha.FECHADEFECTO);
+	}
+	
 	private ClienteDomain(final UUID id, final TipoIdentificacionDomain tipoIdentificacion, final String identificacion,
-			final NombreCompletoClienteEntity nombreCompleto, final CorreoElectronicoClienteEntity correoElectronico,
-			final NumeroTelefonoMovilClienteEntity numeroTelefonoMovil, final Date fechaNacimiento) {
+			final NombreCompletoClienteDomain nombreCompleto, final CorreoElectronicoClienteDomain correoElectronico,
+			final NumeroTelefonoMovilClienteDomain numeroTelefonoMovil, final Date fechaNacimiento) {
 		setId(id);
 		setTipoIdentificacion(tipoIdentificacion);
 		setIdentificacion(identificacion);
@@ -29,38 +39,43 @@ public class ClienteDomain {
 		setFechaNacimiento(fechaNacimiento);
 	}
 	
-	public static final ClienteDomain crear(final UUID id, final TipoIdentificacionDomain tipoIdentificacion, final String identificacion,
-			final NombreCompletoClienteEntity nombreCompleto, final CorreoElectronicoClienteEntity correoElectronico,
-			final NumeroTelefonoMovilClienteEntity numeroTelefonoMovil, final Date fechaNacimiento) {
-		return new ClienteDomain(id, tipoIdentificacion, identificacion, nombreCompleto, correoElectronico, numeroTelefonoMovil, fechaNacimiento);
+	public static final ClienteDomain crear() {
+		return new ClienteDomain();
 	}
 
-	private final void setId(final UUID id) {
-		this.id = UtilUUID.obtenerValorDefecto(id, UtilUUID.obtenerValorDefecto(id, id));
+	private final ClienteDomain setId(final UUID id) {
+		this.id = UtilUUID.obtenerValorDefecto(id, UtilUUID.obtenerValorDefecto(id, UtilUUID.UUIDDEFECTO));
+		return this;
 	}
 
-	private final void setTipoIdentificacion(final TipoIdentificacionDomain tipoIdentificacion) {
-		this.tipoIdentificacion = tipoIdentificacion;
+	private final ClienteDomain setTipoIdentificacion(final TipoIdentificacionDomain tipoIdentificacion) {
+		this.tipoIdentificacion = UtilObjeto.obtenerValorDefecto(tipoIdentificacion, new TipoIdentificacionDomain());
+		return this;
 	}
 
-	private final void setIdentificacion(final String identificacion) {
-		this.identificacion = identificacion;
+	private final ClienteDomain setIdentificacion(final String identificacion) {
+		this.identificacion = UtilTexto.obtenerValorDefecto(identificacion, UtilTexto.VACIO);
+		return this;
 	}
 
-	private final void setNombreCompleto(final NombreCompletoClienteEntity nombreCompleto) {
-		this.nombreCompleto = nombreCompleto;
+	private final ClienteDomain setNombreCompleto(final NombreCompletoClienteDomain nombreCompleto) {
+		this.nombreCompleto = UtilObjeto.obtenerValorDefecto(nombreCompleto, new NombreCompletoClienteDomain());
+		return this;
 	}
 
-	private final void setCorreoElectronico(final CorreoElectronicoClienteEntity correoElectronico) {
-		this.correoElectronico = correoElectronico;
+	private final ClienteDomain setCorreoElectronico(final CorreoElectronicoClienteDomain correoElectronico) {
+		this.correoElectronico = UtilObjeto.obtenerValorDefecto(correoElectronico, new CorreoElectronicoClienteDomain());
+		return this;
 	}
 
-	private final void setNumeroTelefonoMovil(final NumeroTelefonoMovilClienteEntity numeroTelefonoMovil) {
-		this.numeroTelefonoMovil = numeroTelefonoMovil;
+	private final ClienteDomain setNumeroTelefonoMovil(final NumeroTelefonoMovilClienteDomain numeroTelefonoMovil) {
+		this.numeroTelefonoMovil = UtilObjeto.obtenerValorDefecto(numeroTelefonoMovil, new NumeroTelefonoMovilClienteDomain());
+		return this;
 	}
 
-	private final void setFechaNacimiento(final Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
+	private final ClienteDomain setFechaNacimiento(final Date fechaNacimiento) {
+		this.fechaNacimiento = UtilFecha.obtenerValorDefecto(fechaNacimiento, UtilFecha.FECHADEFECTO);
+		return this;
 	}
 
 	public final UUID getId() {
@@ -75,15 +90,15 @@ public class ClienteDomain {
 		return identificacion;
 	}
 
-	public final NombreCompletoClienteEntity getNombreCompleto() {
+	public final NombreCompletoClienteDomain getNombreCompleto() {
 		return nombreCompleto;
 	}
 
-	public final CorreoElectronicoClienteEntity getCorreoElectronico() {
+	public final CorreoElectronicoClienteDomain getCorreoElectronico() {
 		return correoElectronico;
 	}
 
-	public final NumeroTelefonoMovilClienteEntity getNumeroTelefonoMovil() {
+	public final NumeroTelefonoMovilClienteDomain getNumeroTelefonoMovil() {
 		return numeroTelefonoMovil;
 	}
 
