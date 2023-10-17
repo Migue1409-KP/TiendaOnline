@@ -39,11 +39,11 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 			sentenciaPreparada.executeUpdate();
 
 		} catch (final SQLException e) {
-			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000053);
 			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000033);
 			throw DataTiendaOnlineException.crear(e, mensajeUsuario, mensajeTecnico);
 		} catch (final Exception e) {
-			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000053);
 			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000034);
 			throw DataTiendaOnlineException.crear(e, mensajeUsuario, mensajeTecnico);
 		}
@@ -53,10 +53,10 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 	public final void modificar(final TipoIdentificacionEntity tipoIdentificacion) {
 		final var sentencia = new StringBuilder();
 
-		sentencia.append("UPDATE TipoIdentificacion SET " );
-		sentencia.append("codigo = ?, ");
-		sentencia.append("nombre = ?, ");
-		sentencia.append("estado = ? ");
+		sentencia.append("UPDATE TipoIdentificacion " );
+		sentencia.append("SET	codigo = ?, ");
+		sentencia.append("		nombre = ?, ");
+		sentencia.append("		estado = ? ");
 		sentencia.append("WHERE id = ? ");
 		
 		try(final var sentenciaPreparada = getConexion().prepareStatement(sentencia.toString())) {

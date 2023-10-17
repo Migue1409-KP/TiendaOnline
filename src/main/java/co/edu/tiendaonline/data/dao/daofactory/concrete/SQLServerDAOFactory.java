@@ -11,7 +11,7 @@ import co.edu.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
 import co.edu.tiendaonline.crosscutting.util.UtilSQL;
 import co.edu.tiendaonline.data.dao.ClienteDAO;
 import co.edu.tiendaonline.data.dao.TipoIdentificacionDAO;
-import co.edu.tiendaonline.data.dao.concrete.sqlserver.ClientesSQLServerDAO;
+import co.edu.tiendaonline.data.dao.concrete.sqlserver.ClienteSQLServerDAO;
 import co.edu.tiendaonline.data.dao.concrete.sqlserver.TipoIdentificacionSQLServerDAO;
 import co.edu.tiendaonline.data.dao.daofactory.DAOFactory;
 
@@ -76,7 +76,7 @@ public final class SQLServerDAOFactory extends DAOFactory {
 			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000027);
 			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);		
         }
-		return new ClientesSQLServerDAO(conexion);
+		return new ClienteSQLServerDAO(conexion);
 	}
 
 	@Override
