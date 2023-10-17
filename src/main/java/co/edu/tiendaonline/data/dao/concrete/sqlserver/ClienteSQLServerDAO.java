@@ -32,9 +32,9 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 	public final void crear(final ClienteEntity cliente) {
 		final var sentencia = new StringBuilder();
 
-		sentencia.append("INSERT INTO Cliente (id, TipoIdentificacion_id, identificacion, primerNombre, segundoNombre, primerApellido, segundoApellido, "
+		sentencia.append("INSERT INTO Cliente (id, tipoIdentificacion, identificacion, primerNombre, segundoNombre, primerApellido, segundoApellido, "
 				+ "correoElectronico, correoElectronicoConfirmado, numeroTelefonoMovil, numeroTelefonoMovilConfirmado, fechaNacimiento) ");
-		sentencia.append("VALUES (?, ?, ?, ?) ");
+		sentencia.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ");
 
 		try (final var sentenciaPreparada = getConexion().prepareStatement(sentencia.toString())) {
 			sentenciaPreparada.setObject(1, cliente.getId());
@@ -68,7 +68,7 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 		final var sentencia = new StringBuilder();
 
 		sentencia.append("UPDATE Cliente " );
-		sentencia.append("SET	TipoIdentificacion_id = ?, ");
+		sentencia.append("SET	tipoIdentificacion = ?, ");
 		sentencia.append("		identificacion = ?, ");
 		sentencia.append("		primerNombre = ?, ");
 		sentencia.append("		segundoNombre = ?, ");
@@ -134,8 +134,12 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 	public final Optional<ClienteEntity> consultarPorId(final UUID id) {
 
 		final var sentencia = new StringBuilder();
-		sentencia.append("SELECT * ");
-		sentencia.append("FROM  Cliente ");
+		sentencia.append("SELECT cli.id, cli.tipoIdentificacion, ti.codigo, ti.nombre, ti.estado, cli.identificacion, cli.primerNombre, cli.segundoNombre,"
+				+ " cli.primerApellido, cli.segundoApellido, cli.correoElectronico, cli.correoElectronicoConfirmado, cli.numeroTelefonoMovil,"
+				+ " cli.numeroTelefonoMovilConfirmado, cli.fechaNacimiento");
+		sentencia.append("FROM  Cliente cli ");
+		sentencia.append("JOIN  TipoIdentificacion ti ");
+		sentencia.append("	ON  cli.tipoidentificacion = ti.id ");
 		sentencia.append("WHERE  id = ? ");
 
 		Optional<ClienteEntity> resultado = Optional.empty();
@@ -187,14 +191,15 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 			
 			if (resultados.next()) {
 				var clienteEntity = ClienteEntity.crear(
-						UUID.fromString(resultados.getObject("id").toString()), 
-						TipoIdentificacionEntity.crear(UUID.fromString(resultados.getObject("TipoIdentificacion_id").toString()), null, null, false), 
-						resultados.getString("identificacion"),
-						NombreCompletoClienteEntity.crear(resultados.getString("primerNombre"), resultados.getString("segundoNombre"), resultados.getString("primerApellido"), 
-								resultados.getString("segundoApellido")),
-						CorreoElectronicoClienteEntity.crear(resultados.getString("correoElectronico"), resultados.getBoolean("correoElectronicoConfirmado")),
-						NumeroTelefonoMovilClienteEntity.crear(resultados.getString("numeroTelefonoMovil"), resultados.getBoolean("numeroTelefonoMovilConfirmado")),
-						resultados.getDate("fechaNacimiento")
+						UUID.fromString(resultados.getObject("cli.id").toString()), 
+						TipoIdentificacionEntity.crear(UUID.fromString(resultados.getObject("cli.tipoIdentificacion").toString()), 
+								resultados.getString("ti.codigo"), resultados.getString("ti.nombre"), resultados.getBoolean("ti.estado")), 
+						resultados.getString("cli.identificacion"),
+						NombreCompletoClienteEntity.crear(resultados.getString("cli.primerNombre"), resultados.getString("cli.segundoNombre"), 
+								resultados.getString("cli.primerApellido"), resultados.getString("cli.segundoApellido")),
+						CorreoElectronicoClienteEntity.crear(resultados.getString("cli.correoElectronico"), resultados.getBoolean("cli.correoElectronicoConfirmado")),
+						NumeroTelefonoMovilClienteEntity.crear(resultados.getString("cli.numeroTelefonoMovil"), resultados.getBoolean("cli.numeroTelefonoMovilConfirmado")),
+						resultados.getDate("cli.fechaNacimiento")
 						);
 				resultado = Optional.of(clienteEntity);
 			}
@@ -215,49 +220,53 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 		final var sentencia = new StringBuilder();
 		String operadorCondicional = "WHERE";
 		
-		sentencia.append("SELECT * ");
-		sentencia.append("FROM Cliente ");
+		sentencia.append("SELECT cli.id, cli.tipoIdentificacion, ti.codigo, ti.nombre, ti.estado, cli.identificacion, cli.primerNombre, cli.segundoNombre,"
+				+ " cli.primerApellido, cli.segundoApellido, cli.correoElectronico, cli.correoElectronicoConfirmado, cli.numeroTelefonoMovil,"
+				+ " cli.numeroTelefonoMovilConfirmado, cli.fechaNacimiento");
+		sentencia.append("FROM  Cliente cli ");
+		sentencia.append("JOIN  TipoIdentificacion ti ");
+		sentencia.append("	ON  cli.tipoidentificacion = ti.id ");
 		
 		if(!UtilObjeto.esNulo(cliente)) {
 			if(!UtilObjeto.esNulo(cliente.getId())) {
-				sentencia.append(operadorCondicional).append(" id = ?");
+				sentencia.append(operadorCondicional).append(" cli.id = ?");
 				operadorCondicional = "AND";
 				parametros.add(cliente.getId());
 			}
 			
 			if(!UtilObjeto.esNulo(cliente.getTipoIdentificacion())) {
-				sentencia.append(operadorCondicional).append(" TipoIdentificacion_id = ? ");
+				sentencia.append(operadorCondicional).append(" ti.tipoIdentificacion = ? ");
 				operadorCondicional = "AND";
 				parametros.add(cliente.getTipoIdentificacion().getId());
 			}
 			
 			if (!UtilTexto.estaVacio(cliente.getIdentificacion())) {
-				sentencia.append(operadorCondicional).append(" identificacion = ? ");
+				sentencia.append(operadorCondicional).append(" cli.identificacion = ? ");
 				operadorCondicional = "AND";
 				parametros.add(cliente.getIdentificacion());
 			}
 			
 			if(!UtilObjeto.esNulo(cliente.getNombreCompleto())) {
 				if(!UtilTexto.estaVacio(cliente.getNombreCompleto().getPrimerNombre())){
-					sentencia.append(operadorCondicional).append(" primerNombre = ? ");
+					sentencia.append(operadorCondicional).append(" cli.primerNombre = ? ");
 					operadorCondicional = "AND";
 					parametros.add(cliente.getNombreCompleto().getPrimerNombre());
 				}
 				
 				if(!UtilTexto.estaVacio(cliente.getNombreCompleto().getSegundoNombre())){
-					sentencia.append(operadorCondicional).append(" segundoNombre = ? ");
+					sentencia.append(operadorCondicional).append(" cli.segundoNombre = ? ");
 					operadorCondicional = "AND";
 					parametros.add(cliente.getNombreCompleto().getSegundoNombre());
 				}
 				
 				if(!UtilTexto.estaVacio(cliente.getNombreCompleto().getPrimerApellido())){
-					sentencia.append(operadorCondicional).append(" primerApellido = ? ");
+					sentencia.append(operadorCondicional).append(" cli.primerApellido = ? ");
 					operadorCondicional = "AND";
 					parametros.add(cliente.getNombreCompleto().getPrimerApellido());
 				}
 				
 				if(!UtilTexto.estaVacio(cliente.getNombreCompleto().getSegundoApellido())){
-					sentencia.append(operadorCondicional).append(" segundoApellido = ? ");
+					sentencia.append(operadorCondicional).append(" cli.segundoApellido = ? ");
 					operadorCondicional = "AND";
 					parametros.add(cliente.getNombreCompleto().getSegundoApellido());
 				}
@@ -265,13 +274,13 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 			
 			if(!UtilObjeto.esNulo(cliente.getCorreoElectronico())) {
 				if(!UtilTexto.estaVacio(cliente.getCorreoElectronico().getCorreoElectronico())){
-					sentencia.append(operadorCondicional).append(" correoElectronico = ? ");
+					sentencia.append(operadorCondicional).append(" cli.correoElectronico = ? ");
 					operadorCondicional = "AND";
 					parametros.add(cliente.getCorreoElectronico().getCorreoElectronico());
 				}
 				
 				if(!UtilObjeto.esNulo(cliente.getCorreoElectronico().isCorreoElectronicoConfirmado())){
-					sentencia.append(operadorCondicional).append(" correoElectronicoConfirmado = ? ");
+					sentencia.append(operadorCondicional).append(" cli.correoElectronicoConfirmado = ? ");
 					operadorCondicional = "AND";
 					parametros.add(cliente.getCorreoElectronico().isCorreoElectronicoConfirmado());
 				}
@@ -279,25 +288,25 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 			
 			if(!UtilObjeto.esNulo(cliente.getNumeroTelefonoMovil())) {
 				if(!UtilTexto.estaVacio(cliente.getNumeroTelefonoMovil().getNumeroTelefonoMovil())){
-					sentencia.append(operadorCondicional).append(" numeroTelefonoMovil = ? ");
+					sentencia.append(operadorCondicional).append(" cli.numeroTelefonoMovil = ? ");
 					operadorCondicional = "AND";
 					parametros.add(cliente.getNumeroTelefonoMovil().getNumeroTelefonoMovil());
 				}
 				
 				if(!UtilObjeto.esNulo(cliente.getNumeroTelefonoMovil().isNumeroTelefonoMovilConfirmado())){
-					sentencia.append(operadorCondicional).append(" numeroTelefonoMovilConfirmado = ? ");
+					sentencia.append(operadorCondicional).append(" cli.numeroTelefonoMovilConfirmado = ? ");
 					operadorCondicional = "AND";
 					parametros.add(cliente.getNumeroTelefonoMovil().isNumeroTelefonoMovilConfirmado());
 				}
 			}
 			
 			if(!UtilFecha.esNulo(cliente.getFechaNacimiento())) {
-				sentencia.append(operadorCondicional).append(" fechaNacimiento = ? ");
+				sentencia.append(operadorCondicional).append(" cli.fechaNacimiento = ? ");
 				parametros.add(cliente.getFechaNacimiento());
 			}			
 		}
 		
-		sentencia.append("ORDER BY primerNombre ASC ");			
+		sentencia.append("ORDER BY cli.primerNombre ASC ");			
 		return sentencia.toString();
 	}
 
@@ -325,14 +334,15 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 			
 			while (resultados.next()) {
 				var clienteEntity = ClienteEntity.crear(
-						UUID.fromString(resultados.getObject("id").toString()), 
-						TipoIdentificacionEntity.crear(UUID.fromString(resultados.getObject("TipoIdentificacion_id").toString()), null, null, false), 
-						resultados.getString("identificacion"),
-						NombreCompletoClienteEntity.crear(resultados.getString("primerNombre"), resultados.getString("segundoNombre"), resultados.getString("primerApellido"), 
-								resultados.getString("segundoApellido")),
-						CorreoElectronicoClienteEntity.crear(resultados.getString("correoElectronico"), resultados.getBoolean("correoElectronicoConfirmado")),
-						NumeroTelefonoMovilClienteEntity.crear(resultados.getString("numeroTelefonoMovil"), resultados.getBoolean("numeroTelefonoMovilConfirmado")),
-						resultados.getDate("fechaNacimiento")
+						UUID.fromString(resultados.getObject("cli.id").toString()), 
+						TipoIdentificacionEntity.crear(UUID.fromString(resultados.getObject("cli.tipoIdentificacion").toString()), 
+								resultados.getString("ti.codigo"), resultados.getString("ti.nombre"), resultados.getBoolean("ti.estado")), 
+						resultados.getString("cli.identificacion"),
+						NombreCompletoClienteEntity.crear(resultados.getString("cli.primerNombre"), resultados.getString("cli.segundoNombre"), 
+								resultados.getString("cli.primerApellido"), resultados.getString("cli.segundoApellido")),
+						CorreoElectronicoClienteEntity.crear(resultados.getString("cli.correoElectronico"), resultados.getBoolean("cli.correoElectronicoConfirmado")),
+						NumeroTelefonoMovilClienteEntity.crear(resultados.getString("cli.numeroTelefonoMovil"), resultados.getBoolean("cli.numeroTelefonoMovilConfirmado")),
+						resultados.getDate("cli.fechaNacimiento")
 						);
 				listaResultados.add(clienteEntity);
 			}
