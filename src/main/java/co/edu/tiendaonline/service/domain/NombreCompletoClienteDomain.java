@@ -1,21 +1,12 @@
 package co.edu.tiendaonline.service.domain;
 
-import co.edu.tiendaonline.crosscutting.util.UtilTexto;
-
 public class NombreCompletoClienteDomain {
 	private String primerNombre;
 	private String segundoNombre;
 	private String primerApellido;
 	private String segundoApellido;
 	
-	public NombreCompletoClienteDomain() {
-		setPrimerNombre(UtilTexto.VACIO);
-		setSegundoNombre(UtilTexto.VACIO);
-		setPrimerApellido(UtilTexto.VACIO);
-		setSegundoApellido(UtilTexto.VACIO);
-	}
-	
-	public NombreCompletoClienteDomain(final String primerNombre, final String segundoNombre, final String primerApellido,
+	private NombreCompletoClienteDomain(final String primerNombre, final String segundoNombre, final String primerApellido,
 			final String segundoApellido) {
 		setPrimerNombre(primerNombre);
 		setSegundoNombre(segundoNombre);
@@ -23,28 +14,25 @@ public class NombreCompletoClienteDomain {
 		setSegundoApellido(segundoApellido);
 	}
 	
-	public static final NombreCompletoClienteDomain crear() {
-		return new NombreCompletoClienteDomain();
+	public static final NombreCompletoClienteDomain crear(final String primerNombre, final String segundoNombre, final String primerApellido,
+			final String segundoApellido) {
+		return new NombreCompletoClienteDomain(primerNombre, segundoNombre, primerApellido, segundoApellido);
 	}
 
-	private final NombreCompletoClienteDomain setPrimerNombre(final String primerNombre) {
-		this.primerNombre = UtilTexto.obtenerValorDefecto(primerNombre, UtilTexto.VACIO);
-		return this;
+	private final void setPrimerNombre(final String primerNombre) {
+		this.primerNombre = primerNombre;
 	}
 
-	private final NombreCompletoClienteDomain setSegundoNombre(final String segundoNombre) {
-		this.segundoNombre = UtilTexto.obtenerValorDefecto(segundoNombre, UtilTexto.VACIO);
-		return this;
+	private final void setSegundoNombre(final String segundoNombre) {
+		this.segundoNombre = segundoNombre;
 	}
 
-	private final NombreCompletoClienteDomain setPrimerApellido(final String primerApellido) {
-		this.primerApellido = UtilTexto.obtenerValorDefecto(primerApellido, UtilTexto.VACIO);
-		return this;
+	private final void setPrimerApellido(final String primerApellido) {
+		this.primerApellido = primerApellido;
 	}
 
-	private final NombreCompletoClienteDomain setSegundoApellido(final String segundoApellido) {
-		this.segundoApellido = UtilTexto.obtenerValorDefecto(segundoApellido, UtilTexto.VACIO);
-		return this;
+	private final void setSegundoApellido(final String segundoApellido) {
+		this.segundoApellido = segundoApellido;
 	}
 
 	public final String getPrimerNombre() {

@@ -2,24 +2,13 @@ package co.edu.tiendaonline.service.domain;
 
 import java.util.UUID;
 
-import co.edu.tiendaonline.crosscutting.util.UtilObjeto;
-import co.edu.tiendaonline.crosscutting.util.UtilTexto;
-import co.edu.tiendaonline.crosscutting.util.UtilUUID;
-
 public final class TipoIdentificacionDomain {
 	private UUID id;
 	private String codigo;
 	private String nombre;
 	private boolean estado;
 	
-	public TipoIdentificacionDomain() {
-		setId(UtilUUID.UUIDDEFECTO);
-		setCodigo(UtilTexto.VACIO);
-		setNombre(UtilTexto.VACIO);
-		setEstado(false);
-	}
-	
-	public TipoIdentificacionDomain(final UUID id, final String codigo, final String nombre, final boolean estado) {
+	private TipoIdentificacionDomain(final UUID id, final String codigo, final String nombre, final boolean estado) {
 		setId(id);
 		setCodigo(codigo);
 		setNombre(nombre);
@@ -30,24 +19,20 @@ public final class TipoIdentificacionDomain {
 		return new TipoIdentificacionDomain(id,codigo,nombre,estado);
 	}
 
-	private final TipoIdentificacionDomain setId(final UUID id) {
-		this.id = UtilUUID.obtenerValorDefecto(id, UtilUUID.obtenerValorDefecto(id, UtilUUID.UUIDDEFECTO));
-		return this;
+	private final void setId(final UUID id) {
+		this.id = id;
 	}
 
-	private final TipoIdentificacionDomain setCodigo(final String codigo) {
-		this.codigo = UtilTexto.obtenerValorDefecto(UtilTexto.aplicarTrim(codigo), UtilTexto.VACIO);
-		return this;
+	private final void setCodigo(final String codigo) {
+		this.codigo = codigo;
 	}
 
-	private final TipoIdentificacionDomain setNombre(final String nombre) {
-		this.nombre = UtilTexto.obtenerValorDefecto(UtilTexto.aplicarTrim(nombre), UtilTexto.VACIO);
-		return this;
+	private final void setNombre(final String nombre) {
+		this.nombre = nombre;
 	}
 
-	private final TipoIdentificacionDomain setEstado(final boolean estado) {
-		this.estado = UtilObjeto.obtenerValorDefecto(estado, false);
-		return this;
+	private final void setEstado(final boolean estado) {
+		this.estado = estado;
 	}
 
 	public final UUID getId() {

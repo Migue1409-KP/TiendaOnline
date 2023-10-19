@@ -9,6 +9,10 @@ public class UtilUUID {
 		super();	
 	}
 	
+	public static final UUID generarRandomUUID() {
+		return UUID.randomUUID();
+	}
+	
 	public static final boolean esNulo(final UUID uuid) {
 		return uuid == null;
 	}

@@ -3,11 +3,6 @@ package co.edu.tiendaonline.service.domain;
 import java.sql.Date;
 import java.util.UUID;
 
-import co.edu.tiendaonline.crosscutting.util.UtilFecha;
-import co.edu.tiendaonline.crosscutting.util.UtilObjeto;
-import co.edu.tiendaonline.crosscutting.util.UtilTexto;
-import co.edu.tiendaonline.crosscutting.util.UtilUUID;
-
 public class ClienteDomain {
 	private UUID id;
 	private TipoIdentificacionDomain tipoIdentificacion;
@@ -16,16 +11,6 @@ public class ClienteDomain {
 	private CorreoElectronicoClienteDomain correoElectronico;
 	private NumeroTelefonoMovilClienteDomain numeroTelefonoMovil;
 	private Date fechaNacimiento;
-	
-	private ClienteDomain() {
-		setId(UtilUUID.UUIDDEFECTO);
-		setTipoIdentificacion(new TipoIdentificacionDomain());
-		setIdentificacion(UtilTexto.VACIO);
-		setNombreCompleto(new NombreCompletoClienteDomain());
-		setCorreoElectronico(new CorreoElectronicoClienteDomain());
-		setNumeroTelefonoMovil(new NumeroTelefonoMovilClienteDomain());
-		setFechaNacimiento(UtilFecha.FECHADEFECTO);
-	}
 	
 	private ClienteDomain(final UUID id, final TipoIdentificacionDomain tipoIdentificacion, final String identificacion,
 			final NombreCompletoClienteDomain nombreCompleto, final CorreoElectronicoClienteDomain correoElectronico,
@@ -39,43 +24,38 @@ public class ClienteDomain {
 		setFechaNacimiento(fechaNacimiento);
 	}
 	
-	public static final ClienteDomain crear() {
-		return new ClienteDomain();
+	public static final ClienteDomain crear(final UUID id, final TipoIdentificacionDomain tipoIdentificacion, final String identificacion,
+			final NombreCompletoClienteDomain nombreCompleto, final CorreoElectronicoClienteDomain correoElectronico,
+			final NumeroTelefonoMovilClienteDomain numeroTelefonoMovil, final Date fechaNacimiento) {
+		return new ClienteDomain(id, tipoIdentificacion, identificacion, nombreCompleto, correoElectronico, numeroTelefonoMovil, fechaNacimiento);
 	}
 
-	private final ClienteDomain setId(final UUID id) {
-		this.id = UtilUUID.obtenerValorDefecto(id, UtilUUID.obtenerValorDefecto(id, UtilUUID.UUIDDEFECTO));
-		return this;
+	private final void setId(final UUID id) {
+		this.id = id;
 	}
 
-	private final ClienteDomain setTipoIdentificacion(final TipoIdentificacionDomain tipoIdentificacion) {
-		this.tipoIdentificacion = UtilObjeto.obtenerValorDefecto(tipoIdentificacion, new TipoIdentificacionDomain());
-		return this;
+	private final void setTipoIdentificacion(final TipoIdentificacionDomain tipoIdentificacion) {
+		this.tipoIdentificacion = tipoIdentificacion;
 	}
 
-	private final ClienteDomain setIdentificacion(final String identificacion) {
-		this.identificacion = UtilTexto.obtenerValorDefecto(identificacion, UtilTexto.VACIO);
-		return this;
+	private final void setIdentificacion(final String identificacion) {
+		this.identificacion = identificacion;
 	}
 
-	private final ClienteDomain setNombreCompleto(final NombreCompletoClienteDomain nombreCompleto) {
-		this.nombreCompleto = UtilObjeto.obtenerValorDefecto(nombreCompleto, new NombreCompletoClienteDomain());
-		return this;
+	private final void setNombreCompleto(final NombreCompletoClienteDomain nombreCompleto) {
+		this.nombreCompleto = nombreCompleto;
 	}
 
-	private final ClienteDomain setCorreoElectronico(final CorreoElectronicoClienteDomain correoElectronico) {
-		this.correoElectronico = UtilObjeto.obtenerValorDefecto(correoElectronico, new CorreoElectronicoClienteDomain());
-		return this;
+	private final void setCorreoElectronico(final CorreoElectronicoClienteDomain correoElectronico) {
+		this.correoElectronico = correoElectronico;
 	}
 
-	private final ClienteDomain setNumeroTelefonoMovil(final NumeroTelefonoMovilClienteDomain numeroTelefonoMovil) {
-		this.numeroTelefonoMovil = UtilObjeto.obtenerValorDefecto(numeroTelefonoMovil, new NumeroTelefonoMovilClienteDomain());
-		return this;
+	private final void setNumeroTelefonoMovil(final NumeroTelefonoMovilClienteDomain numeroTelefonoMovil) {
+		this.numeroTelefonoMovil = numeroTelefonoMovil;
 	}
 
-	private final ClienteDomain setFechaNacimiento(final Date fechaNacimiento) {
-		this.fechaNacimiento = UtilFecha.obtenerValorDefecto(fechaNacimiento, UtilFecha.FECHADEFECTO);
-		return this;
+	private final void setFechaNacimiento(final Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 
 	public final UUID getId() {

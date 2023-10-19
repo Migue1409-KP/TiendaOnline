@@ -168,6 +168,18 @@ public final class CatalogoMensajes {
 				"Se ha presentado un problema en consultar ClienteDAO tratando de consultar clientes.Se presento una excepcion de tipo SQLException. Por favor verifique la traza del error presentado..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000073, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema inesperado en consultar ClienteDAO tratando de consultar clientes.Se presento una excepcion de tipo Exception. Por favor verifique la traza del error presentado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000074, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDomain de la clase TipoIdentificacionEntityMapper.No es posible mapear un tipo de identificación dominio a partir de una entidad de tipo identificación entity nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000075, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toEntity de la clase TipoIdentificacionEntityMapper.No es posible mapear un tipo de identificación entity  a partir de una entidad de tipo identificación dominio nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000076, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema tratando de llevar a cabo el registro de datos de un nuevo tipo de identificación"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000077, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo setFactoria de la clase RegistroTipoIdentificacionUseCase.Debido a que la factoria con la cual se desea crear esta nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000078, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"Ya existe un tipo de identificación con ese nombre"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000079, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"Ya existe un tipo de identificación con ese codigo"));
 	}
 	
 	private static final void agregarMensaje(final Mensaje mensaje) {

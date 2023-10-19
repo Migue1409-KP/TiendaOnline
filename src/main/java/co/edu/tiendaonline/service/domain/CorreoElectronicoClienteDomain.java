@@ -1,34 +1,24 @@
 package co.edu.tiendaonline.service.domain;
 
-import co.edu.tiendaonline.crosscutting.util.UtilObjeto;
-import co.edu.tiendaonline.crosscutting.util.UtilTexto;
-
 public class CorreoElectronicoClienteDomain {
 	private String correoElectronico;
 	private boolean correoElectronicoConfirmado;
 	
-	public CorreoElectronicoClienteDomain() {
-		setCorreoElectronico(UtilTexto.VACIO);
-		setCorreoElectronicoConfirmado(false);
-	}
-	
-	public CorreoElectronicoClienteDomain(final String correoElectronico, final boolean correoElectronicoConfirmado) {
+	private CorreoElectronicoClienteDomain(final String correoElectronico, final boolean correoElectronicoConfirmado) {
 		setCorreoElectronico(correoElectronico);
 		setCorreoElectronicoConfirmado(correoElectronicoConfirmado);
 	}
 	
-	public static final CorreoElectronicoClienteDomain crear() {
-		return new CorreoElectronicoClienteDomain();
+	public static final CorreoElectronicoClienteDomain crear(final String correoElectronico, final boolean correoElectronicoConfirmado) {
+		return new CorreoElectronicoClienteDomain(correoElectronico, correoElectronicoConfirmado);
 	}
 
-	private final CorreoElectronicoClienteDomain setCorreoElectronico(final String correoElectronico) {
-		this.correoElectronico = UtilTexto.obtenerValorDefecto(UtilTexto.aplicarTrim(correoElectronico), "");
-		return this;
+	private final void setCorreoElectronico(final String correoElectronico) {
+		this.correoElectronico = correoElectronico;
 	}
 
-	private final CorreoElectronicoClienteDomain setCorreoElectronicoConfirmado(final boolean correoElectronicoConfirmado) {
-		this.correoElectronicoConfirmado = UtilObjeto.obtenerValorDefecto(correoElectronicoConfirmado, false);
-		return this;
+	private final void setCorreoElectronicoConfirmado(final boolean correoElectronicoConfirmado) {
+		this.correoElectronicoConfirmado = correoElectronicoConfirmado;
 	}
 
 	public final String getCorreoElectronico() {
