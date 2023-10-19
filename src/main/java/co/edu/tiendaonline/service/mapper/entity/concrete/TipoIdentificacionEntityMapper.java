@@ -42,7 +42,7 @@ public class TipoIdentificacionEntityMapper implements EntityMapper<TipoIdentifi
 		return instancia.toDomain(entity);
 	}
 	
-	public static final TipoIdentificacionEntity convertEntity(final TipoIdentificacionDomain domain) {
+	public static final TipoIdentificacionEntity convertToEntity(final TipoIdentificacionDomain domain) {
 		return instancia.toEntity(domain);
 	}
 }

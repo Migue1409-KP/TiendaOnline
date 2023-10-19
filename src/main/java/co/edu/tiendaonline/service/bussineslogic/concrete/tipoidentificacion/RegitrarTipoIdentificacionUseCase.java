@@ -47,7 +47,7 @@ public final class RegitrarTipoIdentificacionUseCase implements UseCase<TipoIden
 	private final void validarNoExistenciaMismoCodigo(final String codigo) {
 		//TODO: improve method validations
 		var domain = TipoIdentificacionDomain.crear(null, codigo, null, false);
-		var entity = TipoIdentificacionEntityMapper.convertEntity(domain);
+		var entity = TipoIdentificacionEntityMapper.convertToEntity(domain);
 		var resultados = getTipoIdentificacionDAO().consultar(entity);
 		
 		if(!resultados.isEmpty()) {
@@ -59,7 +59,7 @@ public final class RegitrarTipoIdentificacionUseCase implements UseCase<TipoIden
 	private final void validarNoExistenciaMismoNombre(final String nombre) {
 		//TODO: improve method validations
 		var domain = TipoIdentificacionDomain.crear(null, null, nombre, false);
-		var entity = TipoIdentificacionEntityMapper.convertEntity(domain);
+		var entity = TipoIdentificacionEntityMapper.convertToEntity(domain);
 		var resultados = getTipoIdentificacionDAO().consultar(entity);
 		
 		if(!resultados.isEmpty()) {
@@ -69,7 +69,7 @@ public final class RegitrarTipoIdentificacionUseCase implements UseCase<TipoIden
 	}
 	
 	private void registrar(final TipoIdentificacionDomain domain) {
-		getTipoIdentificacionDAO().crear(TipoIdentificacionEntityMapper.convertEntity(domain));
+		getTipoIdentificacionDAO().crear(TipoIdentificacionEntityMapper.convertToEntity(domain));
 	}
 
 	private final DAOFactory getFactoria() {
