@@ -136,7 +136,7 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 		final var sentencia = new StringBuilder();
 		sentencia.append("SELECT cli.id, cli.tipoIdentificacion, ti.codigo, ti.nombre, ti.estado, cli.identificacion, cli.primerNombre, cli.segundoNombre,"
 				+ " cli.primerApellido, cli.segundoApellido, cli.correoElectronico, cli.correoElectronicoConfirmado, cli.numeroTelefonoMovil,"
-				+ " cli.numeroTelefonoMovilConfirmado, cli.fechaNacimiento");
+				+ " cli.numeroTelefonoMovilConfirmado, cli.fechaNacimiento ");
 		sentencia.append("FROM  Cliente cli ");
 		sentencia.append("JOIN  TipoIdentificacion ti ");
 		sentencia.append("	ON  cli.tipoidentificacion = ti.id ");

@@ -177,7 +177,7 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 		final var sentencia = new StringBuilder();
 		String operadorCondicional = "WHERE";
 		
-		sentencia.append("SELECT id, codigo, nombre estado ");
+		sentencia.append("SELECT id, codigo, nombre, estado ");
 		sentencia.append("FROM TipoIdentificacion ");
 		
 		if(!UtilObjeto.esNulo(tipoIdentificacion)) {
@@ -206,7 +206,7 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 			}			
 		}
 		
-		sentencia.append("ORDER BY codigo ASC ");			
+		sentencia.append("ORDER BY codigo ");			
 		return sentencia.toString();
 	}
 
