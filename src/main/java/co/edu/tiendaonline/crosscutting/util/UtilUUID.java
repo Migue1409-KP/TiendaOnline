@@ -14,10 +14,10 @@ public class UtilUUID {
 	}
 	
 	public static final boolean esNulo(final UUID uuid) {
-		return uuid == null;
+		return (uuid == null) || (uuid == UUIDDEFECTO);
 	}
 	
 	public static final UUID obtenerValorDefecto(final UUID uuid, final UUID valorDefecto) {		
-		return esNulo(uuid) ? UUIDDEFECTO: uuid;
+		return esNulo(uuid) ? valorDefecto: uuid;
 	}
 }

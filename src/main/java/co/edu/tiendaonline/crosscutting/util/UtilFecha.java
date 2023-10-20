@@ -10,8 +10,8 @@ public class UtilFecha {
         super();
     }
 
-    public static final <O> boolean esNulo(final O objeto) {
-        return Objects.isNull(objeto);
+    public static final boolean esNulo(final Date fecha) {
+        return Objects.isNull(fecha) || fecha == FECHADEFECTO;
     }
 
     public static final Date obtenerValorDefecto(final Date fecha, final Date valorDefecto) {
