@@ -115,17 +115,17 @@ public final class CatalogoMensajes {
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000046, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
 				"Se ha presentado un problema tratando de consultar el tipo de identificación deseado"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000047, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
-				"Se ha presentado un problema funcion colocarParametrosConsulta en TipoIdentificacionDAO tratando de consultar tipos de identificación.Se presento una excepción de tipo SQLException. Por favor verifique la traza del error presentado..."));
+				"Se ha presentado un problema función colocarParametrosConsulta en TipoIdentificaciónDAO tratando de consultar tipos de identificación.Se presento una excepción de tipo SQLException. Por favor verifique la traza del error presentado..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000048, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
-				"Se ha presentado un problema inesperado en funcion colocarParametrosConsulta en TipoIdentificacionDAO tratando de consultar tipos de identificación.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
+				"Se ha presentado un problema inesperado en función colocarParametrosConsulta en TipoIdentificaciónDAO tratando de consultar tipos de identificación.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000049, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
-				"Se ha presentado un problema en consultar TipoIdentificacionDAO tratando de consultar tipos de identificación.Se presento una excepción de tipo SQLException. Por favor verifique la traza del error presentado..."));
+				"Se ha presentado un problema en consultar TipoIdentificaciónDAO tratando de consultar tipos de identificación.Se presento una excepción de tipo SQLException. Por favor verifique la traza del error presentado..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000050, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
-				"Se ha presentado un problema inesperado en consultar TipoIdentificacionDAO tratando de consultar tipos de identificación.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
+				"Se ha presentado un problema inesperado en consultar TipoIdentificaciónDAO tratando de consultar tipos de identificación.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000051, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
-				"Se ha presentado un problema en funcion ejecutarConsulta en TipoIdentificacionDAO tratando de consultar tipos de identificación.Se presento una excepción de tipo SQLException. Por favor verifique la traza del error presentado..."));
+				"Se ha presentado un problema en función ejecutarConsulta en TipoIdentificaciónDAO tratando de consultar tipos de identificación.Se presento una excepción de tipo SQLException. Por favor verifique la traza del error presentado..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000052, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
-				"Se ha presentado un problema inesperado en funcion ejecutarConsulta en TipoIdentificacionDAO tratando de consultar tipos de identificación.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
+				"Se ha presentado un problema inesperado en función ejecutarConsulta en TipoIdentificaciónDAO tratando de consultar tipos de identificación.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000053, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
 				"Se ha presentado un problema tratando de insertar el tipo de identificación deseado"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000054, TipoMensaje.USUARIO, CategoriaMensaje.ERROR, 
@@ -157,25 +157,25 @@ public final class CatalogoMensajes {
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000067, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema inesperado tratando de procesar los datos de una consulta por id un cliente en la base de datos.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000068, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
-				"Se ha presentado un problema funcion colocarParametrosConsulta en ClienteDAO tratando de consultar clientes.Se presento una excepción de tipo SQLException. Por favor verifique la traza del error presentado..."));
+				"Se ha presentado un problema función colocarParametrosConsulta en ClienteDAO tratando de consultar clientes.Se presento una excepción de tipo SQLException. Por favor verifique la traza del error presentado..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000069, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
-				"Se ha presentado un problema inesperado en funcion colocarParametrosConsulta en ClienteDAO tratando de consultar clientes.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
+				"Se ha presentado un problema inesperado en función colocarParametrosConsulta en ClienteDAO tratando de consultar clientes.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000070, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
-				"Se ha presentado un problema en funcion ejecutarConsulta en ClienteDAO tratando de consultar clientes.Se presento una excepción de tipo SQLException. Por favor verifique la traza del error presentado..."));
+				"Se ha presentado un problema en función ejecutarConsulta en ClienteDAO tratando de consultar clientes.Se presento una excepción de tipo SQLException. Por favor verifique la traza del error presentado..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000071, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
-				"Se ha presentado un problema inesperado en funcion ejecutarConsulta en ClienteDAO tratando de consultar clientes.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
+				"Se ha presentado un problema inesperado en función ejecutarConsulta en ClienteDAO tratando de consultar clientes.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000072, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema en consultar ClienteDAO tratando de consultar clientes.Se presento una excepción de tipo SQLException. Por favor verifique la traza del error presentado..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000073, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema inesperado en consultar ClienteDAO tratando de consultar clientes.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000074, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
-				"Se ha presentado un problema en el metodo toDomain de la clase TipoIdentificacionEntityMapper.No es posible mapear un tipo de identificación dominio a partir de una entidad de tipo identificación entity nula"));
+				"Se ha presentado un problema en el metodo toDomain de la clase TipoIdentificaciónEntityMapper.No es posible mapear un tipo de identificación dominio a partir de una entidad de tipo identificación entity nula"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000075, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
-				"Se ha presentado un problema en el metodo toEntity de la clase TipoIdentificacionEntityMapper.No es posible mapear un tipo de identificación entity  a partir de una entidad de tipo identificación dominio nula"));
+				"Se ha presentado un problema en el metodo toEntity de la clase TipoIdentificaciónEntityMapper.No es posible mapear un tipo de identificación entity  a partir de una entidad de tipo identificación dominio nula"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000076, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema tratando de llevar a cabo el registro de datos de un nuevo tipo de identificación"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000077, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
-				"Se ha presentado un problema en el metodo setFactoria de la clase RegistroTipoIdentificacionUseCase.Debido a que la factoria con la cual se desea crear esta nula"));
+				"Se ha presentado un problema en el metodo setFactoria de la clase RegistroTipoIdentificaciónUseCase.Debido a que la factoria con la cual se desea crear esta nula"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000078, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
 				"Ya existe un tipo de identificación con ese nombre"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000079, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
@@ -199,11 +199,11 @@ public final class CatalogoMensajes {
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000088, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema tratando de llevar a cabo la consulta de datos de un tipo de identificación"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000089, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
-				"Se ha presentado un problema en el metodo setFactoria de la clase ConsultarTipoIdentificacionUseCase.Debido a que la factoria con la cual se desea crear esta nula"));
+				"Se ha presentado un problema en el metodo setFactoria de la clase ConsultarTipoIdentificaciónUseCase.Debido a que la factoria con la cual se desea crear esta nula"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000090, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema tratando de llevar a cabo la actualización de datos de un nuevo tipo de identificación"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000091, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
-				"Se ha presentado un problema en el metodo setFactoria de la clase ActualizarTipoIdentificacionUseCase.Debido a que la factoria con la cual se desea crear esta nula"));
+				"Se ha presentado un problema en el metodo setFactoria de la clase ActualizarTipoIdentificaciónUseCase.Debido a que la factoria con la cual se desea crear esta nula"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000092, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
 				"No existe un tipo de identificación existen a actualizar"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000093, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
@@ -213,7 +213,7 @@ public final class CatalogoMensajes {
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000095, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema tratando de eliminar un tipo de identificación"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000096, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
-				"Se ha presentado un problema en el metodo setFactoria de la clase EliminarTipoIdentifacionUseCase.Debido a que la factoria con la cual se desea crear esta nula"));
+				"Se ha presentado un problema en el metodo setFactoria de la clase EliminarTipoIdentifaciónUseCase.Debido a que la factoria con la cual se desea crear esta nula"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000097, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
 				"No existe un tipo de identificación existente a eliminar"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000098, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
