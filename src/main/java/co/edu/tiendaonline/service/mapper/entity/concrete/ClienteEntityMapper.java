@@ -1,5 +1,8 @@
 package co.edu.tiendaonline.service.mapper.entity.concrete;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import co.edu.tiendaonline.crosscutting.exception.concrete.ServiceTiendaOnlineException;
 import co.edu.tiendaonline.crosscutting.messages.CatalogoMensajes;
 import co.edu.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
@@ -58,7 +61,16 @@ public class ClienteEntityMapper implements EntityMapper<ClienteEntity, ClienteD
 		return instancia.toDomain(entity);
 	}
 	
-	public static final ClienteEntity convertEntity(final ClienteDomain domain) {
+	public static final ClienteEntity convertToEntity(final ClienteDomain domain) {
 		return instancia.toEntity(domain);
+	}
+	
+	public static final List<ClienteDomain>  convertToListDomain(final List<ClienteEntity> entity){
+		List<ClienteDomain> resultados = new ArrayList<>();
+		for (int i = 0; i < entity.size(); i++) {
+			resultados.add(convertToDomain(entity.get(i)));
+		}
+		
+		return resultados;
 	}
 }
