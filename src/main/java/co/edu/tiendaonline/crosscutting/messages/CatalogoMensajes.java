@@ -273,13 +273,13 @@ public final class CatalogoMensajes {
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000125, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
 				"Se presento un error inesperado tratando de registrar un nuevo tipo de identificación"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000126, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
-				"Se ha presentado un problema inesperado en función execute en RegistrarTipoIdentificacionFacade tratando de insertar un nuevo tipo de identificación.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
+				"Se ha presentado un problema inesperado en función execute en RegistrarTipoIdentificaciónFacade tratando de insertar un nuevo tipo de identificación.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000127, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema en el metodo toEntity de la clase TipoIdentificaciónEntityMapper.No es posible mapear un tipo de identificación entity a partir de una entidad de tipo identificación domain nula"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000128, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
-				"Se ha presentado un problema en el metodo toDomain de la clase TipoIdentificacionDTOMapper.No es posible mapear un tipo de identificación domain a partir de una entidad de tipo identificación dto nula"));
+				"Se ha presentado un problema en el metodo toDomain de la clase TipoIdentificaciónDTOMapper.No es posible mapear un tipo de identificación domain a partir de una entidad de tipo identificación dto nula"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000129, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
-				"Se ha presentado un problema en el metodo toDTO de la clase TipoIdentificacionDTOMapper.No es posible mapear un tipo de identificación dto a partir de una entidad de tipo identificación domain nula"));
+				"Se ha presentado un problema en el metodo toDTO de la clase TipoIdentificaciónDTOMapper.No es posible mapear un tipo de identificación dto a partir de una entidad de tipo identificación domain nula"));
 	}
 	
 	private static final void agregarMensaje(final Mensaje mensaje) {
