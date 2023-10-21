@@ -9,7 +9,7 @@ import co.edu.tiendaonline.crosscutting.util.UtilObjeto;
 import co.edu.tiendaonline.data.dao.ClienteDAO;
 import co.edu.tiendaonline.data.dao.daofactory.DAOFactory;
 import co.edu.tiendaonline.service.bussineslogic.UseCaseFind;
-import co.edu.tiendaonline.service.domain.ClienteDomain;
+import co.edu.tiendaonline.service.domain.cliente.ClienteDomain;
 import co.edu.tiendaonline.service.mapper.entity.concrete.ClienteEntityMapper;
 
 public class ConsultarClienteUseCase implements UseCaseFind<ClienteDomain>{

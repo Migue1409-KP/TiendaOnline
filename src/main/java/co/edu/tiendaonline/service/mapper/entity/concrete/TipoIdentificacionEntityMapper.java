@@ -8,7 +8,7 @@ import co.edu.tiendaonline.crosscutting.messages.CatalogoMensajes;
 import co.edu.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
 import co.edu.tiendaonline.crosscutting.util.UtilObjeto;
 import co.edu.tiendaonline.data.entity.TipoIdentificacionEntity;
-import co.edu.tiendaonline.service.domain.TipoIdentificacionDomain;
+import co.edu.tiendaonline.service.domain.tipoidentificacion.TipoIdentificacionDomain;
 import co.edu.tiendaonline.service.mapper.entity.EntityMapper;
 
 public class TipoIdentificacionEntityMapper implements EntityMapper<TipoIdentificacionEntity, TipoIdentificacionDomain> {
@@ -34,7 +34,7 @@ public class TipoIdentificacionEntityMapper implements EntityMapper<TipoIdentifi
 	public final TipoIdentificacionEntity toEntity(final TipoIdentificacionDomain domain) {
 		if(UtilObjeto.esNulo(domain)) {
 			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
-			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000075);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000127);
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		

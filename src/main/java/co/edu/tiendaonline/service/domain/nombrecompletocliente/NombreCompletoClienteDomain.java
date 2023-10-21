@@ -1,4 +1,4 @@
-package co.edu.tiendaonline.service.domain;
+package co.edu.tiendaonline.service.domain.nombrecompletocliente;
 
 public class NombreCompletoClienteDomain {
 	private String primerNombre;

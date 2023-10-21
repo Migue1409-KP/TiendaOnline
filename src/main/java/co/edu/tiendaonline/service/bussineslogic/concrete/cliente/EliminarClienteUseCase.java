@@ -9,7 +9,7 @@ import co.edu.tiendaonline.crosscutting.util.UtilObjeto;
 import co.edu.tiendaonline.data.dao.ClienteDAO;
 import co.edu.tiendaonline.data.dao.daofactory.DAOFactory;
 import co.edu.tiendaonline.service.bussineslogic.UseCase;
-import co.edu.tiendaonline.service.domain.ClienteDomain;
+import co.edu.tiendaonline.service.domain.cliente.ClienteDomain;
 import co.edu.tiendaonline.service.mapper.entity.concrete.ClienteEntityMapper;
 
 public class EliminarClienteUseCase implements UseCase<ClienteDomain> {

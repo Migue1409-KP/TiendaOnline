@@ -1,4 +1,4 @@
-package co.edu.tiendaonline.service.domain;
+package co.edu.tiendaonline.service.domain.numerotelefonomovilcliente;
 
 public class NumeroTelefonoMovilClienteDomain {
 	private String numeroTelefonoMovil;

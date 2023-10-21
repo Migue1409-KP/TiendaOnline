@@ -254,6 +254,32 @@ public final class CatalogoMensajes {
 				"Se ha presentado un problema tratando de llevar a cabo la consulta de datos de un cliente"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000116, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema en el metodo setFactoria de la clase ConsultarClienteUseCase.Debido a que la factoria con la cual se desea crear esta nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000117, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"La longitud del codigo de tipo identificación no es valida. La longitud maxima son 50 caracteres"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000118, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El codigo de tipo identificación es un dato obligatorio"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000119, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El codigo de tipo identificación solo puede contener letras"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000120, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"La longitud del nombre de tipo identificación no es valida. La longitud maxima son 100 caracteres"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000121, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El nombre de tipo identificación es un dato obligatorio"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000122, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El nombre de tipo identificación solo puede contener letras, digitos y espacios internos"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000123, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El identificador de tipo identificación es un dato obligatorio y no puede ser igual al UUID por defecto"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000124, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"No es posible llevar a cabo la operación deseada con el tipo de identificación"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000125, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"Se presento un error inesperado tratando de registrar un nuevo tipo de identificación"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000126, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema inesperado en función execute en RegistrarTipoIdentificacionFacade tratando de insertar un nuevo tipo de identificación.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000127, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toEntity de la clase TipoIdentificaciónEntityMapper.No es posible mapear un tipo de identificación entity a partir de una entidad de tipo identificación domain nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000128, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDomain de la clase TipoIdentificacionDTOMapper.No es posible mapear un tipo de identificación domain a partir de una entidad de tipo identificación dto nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000129, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDTO de la clase TipoIdentificacionDTOMapper.No es posible mapear un tipo de identificación dto a partir de una entidad de tipo identificación domain nula"));
 	}
 	
 	private static final void agregarMensaje(final Mensaje mensaje) {

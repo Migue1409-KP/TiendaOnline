@@ -12,10 +12,10 @@ import co.edu.tiendaonline.data.dao.ClienteDAO;
 import co.edu.tiendaonline.data.dao.daofactory.DAOFactory;
 import co.edu.tiendaonline.data.entity.ClienteEntity;
 import co.edu.tiendaonline.service.bussineslogic.UseCase;
-import co.edu.tiendaonline.service.domain.ClienteDomain;
-import co.edu.tiendaonline.service.domain.CorreoElectronicoClienteDomain;
-import co.edu.tiendaonline.service.domain.NombreCompletoClienteDomain;
-import co.edu.tiendaonline.service.domain.NumeroTelefonoMovilClienteDomain;
+import co.edu.tiendaonline.service.domain.cliente.ClienteDomain;
+import co.edu.tiendaonline.service.domain.correoelectronicocliente.CorreoElectronicoClienteDomain;
+import co.edu.tiendaonline.service.domain.nombrecompletocliente.NombreCompletoClienteDomain;
+import co.edu.tiendaonline.service.domain.numerotelefonomovilcliente.NumeroTelefonoMovilClienteDomain;
 import co.edu.tiendaonline.service.mapper.entity.concrete.ClienteEntityMapper;
 
 public class RegistrarClienteUseCase implements UseCase<ClienteDomain> {

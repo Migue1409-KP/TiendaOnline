@@ -1,4 +1,4 @@
-package co.edu.tiendaonline.service.domain;
+package co.edu.tiendaonline.service.domain.correoelectronicocliente;
 
 public class CorreoElectronicoClienteDomain {
 	private String correoElectronico;

@@ -1,7 +1,12 @@
-package co.edu.tiendaonline.service.domain;
+package co.edu.tiendaonline.service.domain.cliente;
 
 import java.sql.Date;
 import java.util.UUID;
+
+import co.edu.tiendaonline.service.domain.correoelectronicocliente.CorreoElectronicoClienteDomain;
+import co.edu.tiendaonline.service.domain.nombrecompletocliente.NombreCompletoClienteDomain;
+import co.edu.tiendaonline.service.domain.numerotelefonomovilcliente.NumeroTelefonoMovilClienteDomain;
+import co.edu.tiendaonline.service.domain.tipoidentificacion.TipoIdentificacionDomain;
 
 public class ClienteDomain {
 	private UUID id;

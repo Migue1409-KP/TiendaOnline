@@ -9,19 +9,21 @@ import co.edu.tiendaonline.crosscutting.util.UtilObjeto;
 import co.edu.tiendaonline.data.dao.TipoIdentificacionDAO;
 import co.edu.tiendaonline.data.dao.daofactory.DAOFactory;
 import co.edu.tiendaonline.service.bussineslogic.UseCase;
-import co.edu.tiendaonline.service.domain.TipoIdentificacionDomain;
+import co.edu.tiendaonline.service.bussineslogic.validator.concrete.tipoidentificacion.ModificarTipoIdentificacionValidator;
+import co.edu.tiendaonline.service.domain.tipoidentificacion.TipoIdentificacionDomain;
 import co.edu.tiendaonline.service.mapper.entity.concrete.TipoIdentificacionEntityMapper;
 
-public class ActualizarTipoIdentificacionUseCase implements UseCase<TipoIdentificacionDomain> {
+public class ModificarTipoIdentificacionUseCase implements UseCase<TipoIdentificacionDomain> {
 
 	private DAOFactory factoria;
 	
-	public ActualizarTipoIdentificacionUseCase(DAOFactory factoria) {
+	public ModificarTipoIdentificacionUseCase(DAOFactory factoria) {
 		setFactoria(factoria);
 	}
 
 	@Override
 	public void execute(TipoIdentificacionDomain domain) {
+		ModificarTipoIdentificacionValidator.ejecutar(domain);
 		validarNoExistenciaRegistro(domain.getId());
 		validarNoExistenciaMismoCodigo(domain.getCodigo());
 		validarNoExistenciaMismoNombre(domain.getNombre());

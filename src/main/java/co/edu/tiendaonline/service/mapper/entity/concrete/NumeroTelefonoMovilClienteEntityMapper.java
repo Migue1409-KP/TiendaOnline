@@ -5,7 +5,7 @@ import co.edu.tiendaonline.crosscutting.messages.CatalogoMensajes;
 import co.edu.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
 import co.edu.tiendaonline.crosscutting.util.UtilObjeto;
 import co.edu.tiendaonline.data.entity.support.NumeroTelefonoMovilClienteEntity;
-import co.edu.tiendaonline.service.domain.NumeroTelefonoMovilClienteDomain;
+import co.edu.tiendaonline.service.domain.numerotelefonomovilcliente.NumeroTelefonoMovilClienteDomain;
 import co.edu.tiendaonline.service.mapper.entity.EntityMapper;
 
 public class NumeroTelefonoMovilClienteEntityMapper implements EntityMapper<NumeroTelefonoMovilClienteEntity, NumeroTelefonoMovilClienteDomain> {
