@@ -16,9 +16,6 @@ public class ClienteDTO {
 	private CorreoElectronicoClienteDTO correoElectronico;
 	private NumeroTelefonoMovilClienteDTO numeroTelefonoMovil;
 	private Date fechaNacimiento;
-	public final UUID getId() {
-		return id;
-	}
 	
 	public ClienteDTO() {
 		setId(UtilUUID.UUIDDEFECTO);
@@ -42,7 +39,13 @@ public class ClienteDTO {
 		setFechaNacimiento(fechaNacimiento);
 	}
 
+	public static final ClienteDTO crear(){
+		return new ClienteDTO();
+	}
 
+	public final UUID getId() {
+		return id;
+	}
 
 	public final TipoIdentificacionDTO getTipoIdentificacion() {
 		return tipoIdentificacion;
@@ -68,7 +71,7 @@ public class ClienteDTO {
 		return fechaNacimiento;
 	}
 	
-	public final ClienteDTO setId(UUID id) {
+	public final ClienteDTO setId(final UUID id) {
 		this.id = UtilUUID.obtenerValorDefecto(id, UtilUUID.obtenerValorDefecto(id, UtilUUID.UUIDDEFECTO));
 		return this;
 	}
