@@ -41,7 +41,7 @@ public final class CodigoTipoIdentificacionValidationRule implements ValidationR
 	
 	private final void validarFormato(final String dato) {
 		if(!UtilTexto.contieneSoloLetras(dato)) {
-			final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000118);
+			final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000119);
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
 		}
 	}
