@@ -9,7 +9,6 @@ import co.edu.tiendaonline.crosscutting.util.UtilObjeto;
 import co.edu.tiendaonline.data.dao.TipoIdentificacionDAO;
 import co.edu.tiendaonline.data.dao.daofactory.DAOFactory;
 import co.edu.tiendaonline.service.bussineslogic.UseCaseFind;
-import co.edu.tiendaonline.service.bussineslogic.validator.concrete.tipoidentificacion.ConsultarTipoIdentificacionValidator;
 import co.edu.tiendaonline.service.domain.tipoidentificacion.TipoIdentificacionDomain;
 import co.edu.tiendaonline.service.mapper.entity.concrete.TipoIdentificacionEntityMapper;
 
@@ -23,9 +22,7 @@ public class ConsultarTipoIdentificacionUseCase implements UseCaseFind<TipoIdent
 	
 	@Override
 	public List<TipoIdentificacionDomain> execute(TipoIdentificacionDomain domain) {
-		ConsultarTipoIdentificacionValidator.ejecutar(domain);
 		final var resultadosTmp = getTipoIdentificacionDAO().consultar(TipoIdentificacionEntityMapper.convertToEntity(domain));
-		
 		return TipoIdentificacionEntityMapper.convertToListDomain(resultadosTmp);
 	}
 

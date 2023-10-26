@@ -13,6 +13,7 @@ import co.edu.tiendaonline.crosscutting.messages.CatalogoMensajes;
 import co.edu.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
 import co.edu.tiendaonline.crosscutting.util.UtilObjeto;
 import co.edu.tiendaonline.crosscutting.util.UtilTexto;
+import co.edu.tiendaonline.crosscutting.util.UtilUUID;
 import co.edu.tiendaonline.data.dao.TipoIdentificacionDAO;
 import co.edu.tiendaonline.data.dao.base.SQLDAO;
 import co.edu.tiendaonline.data.entity.TipoIdentificacionEntity;
@@ -181,21 +182,21 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 		sentencia.append("FROM TipoIdentificacion ");
 		
 		if(!UtilObjeto.esNulo(tipoIdentificacion)) {
-			if(!UtilObjeto.esNulo(tipoIdentificacion.getId())) {
+			if(!UtilUUID.esNulo(tipoIdentificacion.getId())) {
 				sentencia.append(operadorCondicional).append(" id = ?");
-				operadorCondicional = "AND";
+				operadorCondicional = " AND";
 				parametros.add(tipoIdentificacion.getId());
 			}
 			
 			if(!UtilTexto.estaVacio(tipoIdentificacion.getCodigo())) {
 				sentencia.append(operadorCondicional).append(" codigo = ? ");
-				operadorCondicional = "AND";
+				operadorCondicional = " AND";
 				parametros.add(tipoIdentificacion.getCodigo());
 			}
 			
 			if(!UtilTexto.estaVacio(tipoIdentificacion.getNombre())) {
 				sentencia.append(operadorCondicional).append(" nombre = ? ");
-				operadorCondicional = "AND";
+				operadorCondicional = " AND";
 				parametros.add(tipoIdentificacion.getNombre());
 			}
 			
@@ -206,7 +207,7 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 			}			
 		}
 		
-		sentencia.append("ORDER BY codigo ");			
+		sentencia.append("ORDER BY codigo ");
 		return sentencia.toString();
 	}
 
@@ -231,7 +232,6 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 		final var listaResultados = new ArrayList<TipoIdentificacionEntity>();
 		
 		try (final var resultados = sentenciaPreparada.executeQuery()) {
-			
 			while (resultados.next()) {
 				var tipoIdentificacionEntity = TipoIdentificacionEntity.crear(
 						UUID.fromString(resultados.getObject("id").toString()), resultados.getString("codigo"),

@@ -54,7 +54,6 @@ public class TipoIdentificacionEntityMapper implements EntityMapper<TipoIdentifi
 		for (int i = 0; i < entity.size(); i++) {
 			resultados.add(convertToDomain(entity.get(i)));
 		}
-		
 		return resultados;
 	}
 }
