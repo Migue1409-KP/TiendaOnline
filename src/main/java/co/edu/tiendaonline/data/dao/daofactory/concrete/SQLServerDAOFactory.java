@@ -1,8 +1,10 @@
 package co.edu.tiendaonline.data.dao.daofactory.concrete;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import co.edu.tiendaonline.data.dao.daofactory.concrete.SQLServerDAOFactory;
 import co.edu.tiendaonline.crosscutting.exception.concrete.DataTiendaOnlineException;
@@ -26,9 +28,12 @@ public final class SQLServerDAOFactory extends DAOFactory {
 	@Override
 	protected final void abrirConexion() {
         try {
-            String url = System.getenv("DB_URL_TiendaOnline");
-            String user = System.getenv("DB_USER_TiendaOnline");
-            String password = System.getenv("DB_PASSWORD_TiendaOnline");
+			Properties prop = new Properties();
+			InputStream input = getClass().getResourceAsStream("/application.properties");
+			prop.load(input);
+			String url = prop.getProperty("db.url");
+			String user = prop.getProperty("db.user");
+			String password = prop.getProperty("db.password");
             
             if (url == null || url.isEmpty() || user == null || user.isEmpty() || password == null || password.isEmpty()) {
             	var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);

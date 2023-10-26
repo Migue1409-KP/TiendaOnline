@@ -282,6 +282,12 @@ public final class CatalogoMensajes {
 				"Se ha presentado un problema en el metodo toDTO de la clase TipoIdentificaciónDTOMapper.No es posible mapear un tipo de identificación dto a partir de una entidad de tipo identificación domain nula"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000130, TipoMensaje.USUARIO, CategoriaMensaje.CONFIRMACION,
 				"El tipo de identificación fue registrado exitosamente"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000131, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"Se presento un error inesperado tratando de consultar un tipo de identificación"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000132, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema inesperado en función execute en ConsultarTipoIdentificacionFacade tratando de insertar un nuevo tipo de identificación.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000133, TipoMensaje.USUARIO, CategoriaMensaje.CONFIRMACION,
+				"El tipo de identificación fue consultado exitosamente"));
 	}
 	
 	private static final void agregarMensaje(final Mensaje mensaje) {
