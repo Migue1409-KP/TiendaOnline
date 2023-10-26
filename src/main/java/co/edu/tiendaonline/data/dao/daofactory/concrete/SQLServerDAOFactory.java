@@ -26,13 +26,12 @@ public final class SQLServerDAOFactory extends DAOFactory {
 	@Override
 	protected final void abrirConexion() {
         try {
-        	//jdbc:sqlserver://<server>:<port>;encrypt=false;databaseName=<database>;user=<user>:password=<password>
             String url = System.getenv("DB_URL_TiendaOnline");
             String user = System.getenv("DB_USER_TiendaOnline");
             String password = System.getenv("DB_PASSWORD_TiendaOnline");
             
             if (url == null || url.isEmpty() || user == null || user.isEmpty() || password == null || password.isEmpty()) {
-    			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+            	var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
     			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000023);
     			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
             }
