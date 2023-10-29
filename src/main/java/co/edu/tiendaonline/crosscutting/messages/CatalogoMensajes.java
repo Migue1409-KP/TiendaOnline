@@ -285,7 +285,7 @@ public final class CatalogoMensajes {
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000131, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
 				"Se presento un error inesperado tratando de consultar un tipo de identificación"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000132, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
-				"Se ha presentado un problema inesperado en función execute en ConsultarTipoIdentificacionFacade tratando de insertar un nuevo tipo de identificación.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
+				"Se ha presentado un problema inesperado en función execute en ConsultarTipoIdentificacionFacade tratando de consultar un tipo de identificación.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000133, TipoMensaje.USUARIO, CategoriaMensaje.CONFIRMACION,
 				"El tipo de identificación fue consultado exitosamente"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000134, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
@@ -360,6 +360,30 @@ public final class CatalogoMensajes {
 				"La identificación del cliente debe contener unicamente digitos"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000169, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
 				"La fecha de nacimiento del cliente es un dato obligatorio"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000170, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"Se presento un error inesperado tratando de consultar un cliente"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000171, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema inesperado en función execute en ConsultarClienteFacade tratando de consultar un cliente.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000172, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"Se presento un error inesperado tratando de eliminar un cliente"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000173, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema inesperado en función execute en EliminarClienteFacade tratando de eliminar un cliente.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000174, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"Se presento un error inesperado tratando de eliminar un tipo de identificación"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000175, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema inesperado en función execute en EliminarTipoIdentificacionFacade tratando de eliminar un tipo de identificación.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000176, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"Se presento un error inesperado tratando de modificar un tipo de identificación"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000177, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema inesperado en función execute en ModificarTipoIdentificacionFacade tratando de modificar un tipo de identificación.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000178, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"Se presento un error inesperado tratando de modificar un cliente"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000179, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema inesperado en función execute en ModificarClienteFacade tratando de modificar un cliente.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000180, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"Se presento un error inesperado tratando de registrar un nuevo cliente"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000181, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema inesperado en función execute en RegistrarClienteFacade tratando de registrar un nuevo cliente.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
 	}
 	
 	private static final void agregarMensaje(final Mensaje mensaje) {
