@@ -17,6 +17,7 @@ import co.edu.tiendaonline.crosscutting.util.UtilUUID;
 import co.edu.tiendaonline.data.dao.TipoIdentificacionDAO;
 import co.edu.tiendaonline.data.dao.base.SQLDAO;
 import co.edu.tiendaonline.data.entity.TipoIdentificacionEntity;
+import co.edu.tiendaonline.data.entity.support.BooleanEntity;
 
 public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements TipoIdentificacionDAO {
 
@@ -35,7 +36,7 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 			sentenciaPreparada.setObject(1, tipoIdentificacion.getId());
 			sentenciaPreparada.setString(2, tipoIdentificacion.getCodigo());
 			sentenciaPreparada.setString(3, tipoIdentificacion.getNombre());
-			sentenciaPreparada.setBoolean(4, tipoIdentificacion.isEstado());
+			sentenciaPreparada.setBoolean(4, tipoIdentificacion.isEstado().isValor());
 
 			sentenciaPreparada.executeUpdate();
 
@@ -63,7 +64,7 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 		try(final var sentenciaPreparada = getConexion().prepareStatement(sentencia.toString())) {
 			sentenciaPreparada.setString(1, tipoIdentificacion.getCodigo());
 			sentenciaPreparada.setString(2, tipoIdentificacion.getNombre());
-			sentenciaPreparada.setBoolean(3, tipoIdentificacion.isEstado());
+			sentenciaPreparada.setBoolean(3, tipoIdentificacion.isEstado().isValor());
 			sentenciaPreparada.setObject(4, tipoIdentificacion.getId());
 			
 			sentenciaPreparada.executeUpdate();
@@ -158,7 +159,7 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 			if (resultados.next()) {
 				var tipoIdentificacionEntity = TipoIdentificacionEntity.crear(
 						UUID.fromString(resultados.getObject("id").toString()), resultados.getString("codigo"),
-						resultados.getString("nombre"), resultados.getBoolean("estado"));
+						resultados.getString("nombre"), BooleanEntity.crear(resultados.getBoolean("estado"), false));
 				resultado = Optional.of(tipoIdentificacionEntity);
 			}
 		} catch (SQLException e) {
@@ -183,7 +184,7 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 		
 		if(!UtilObjeto.esNulo(tipoIdentificacion)) {
 			if(!UtilUUID.esNulo(tipoIdentificacion.getId())) {
-				sentencia.append(operadorCondicional).append(" id = ?");
+				sentencia.append(operadorCondicional).append(" id = ? ");
 				operadorCondicional = " AND";
 				parametros.add(tipoIdentificacion.getId());
 			}
@@ -200,12 +201,12 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 				parametros.add(tipoIdentificacion.getNombre());
 			}
 			
-			if(!UtilObjeto.esNulo(tipoIdentificacion.isEstado())) {
-				//TODO: validate conditional
+			if(!tipoIdentificacion.isEstado().isValorDefecto()) {
 				sentencia.append(operadorCondicional).append(" estado = ? ");
-				parametros.add(tipoIdentificacion.isEstado());
+				parametros.add(tipoIdentificacion.isEstado().isValor());
 			}			
 		}
+		
 		
 		sentencia.append("ORDER BY codigo ");
 		return sentencia.toString();
@@ -235,7 +236,7 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 			while (resultados.next()) {
 				var tipoIdentificacionEntity = TipoIdentificacionEntity.crear(
 						UUID.fromString(resultados.getObject("id").toString()), resultados.getString("codigo"),
-						resultados.getString("nombre"), resultados.getBoolean("estado"));
+						resultados.getString("nombre"), BooleanEntity.crear(resultados.getBoolean("estado"), false));
 				listaResultados.add(tipoIdentificacionEntity);
 			}
 		} catch (SQLException e) {

@@ -288,6 +288,14 @@ public final class CatalogoMensajes {
 				"Se ha presentado un problema inesperado en función execute en ConsultarTipoIdentificacionFacade tratando de insertar un nuevo tipo de identificación.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000133, TipoMensaje.USUARIO, CategoriaMensaje.CONFIRMACION,
 				"El tipo de identificación fue consultado exitosamente"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000134, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDomain de la clase BooleanEntityMapper.No es posible mapear un Boolean dominio a partir de una entidad de Boolean entity nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000135, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toEntity de la clase BooleanEntityMapper.No es posible mapear un Boolean entity a partir de una entidad de un Boolean domain nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000136, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDomain de la clase BooleanDTOMapper.No es posible mapear un Boolean domain a partir de una de un Boolean dto nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000137, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDTO de la clase BooleanDTOMapper.No es posible mapear un tipo de identificación dto a partir de un Boolean domain nula"));
 	}
 	
 	private static final void agregarMensaje(final Mensaje mensaje) {

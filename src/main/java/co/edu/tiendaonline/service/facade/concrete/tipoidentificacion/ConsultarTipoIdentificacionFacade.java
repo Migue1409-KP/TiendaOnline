@@ -22,7 +22,7 @@ public final class ConsultarTipoIdentificacionFacade implements FacadeFind<TipoI
 	public List<TipoIdentificacionDTO> execute(final TipoIdentificacionDTO dto) {
 		final TipoIdentificacionDomain domain = TipoIdentificacionDTOMapper.convertToDomain(dto);
 		ConsultarTipoIdentificacionValidator.ejecutar(domain);
-		List<TipoIdentificacionDTO> resultados = new ArrayList<TipoIdentificacionDTO>();
+		List<TipoIdentificacionDTO> resultados = new ArrayList<>();
 		
 		DAOFactory daofactory = DAOFactory.obtenerDAOFactory(TipoDAOFactory.SQLSERVER);
 		

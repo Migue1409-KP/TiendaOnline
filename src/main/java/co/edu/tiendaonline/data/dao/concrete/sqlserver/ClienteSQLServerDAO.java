@@ -18,6 +18,7 @@ import co.edu.tiendaonline.data.dao.ClienteDAO;
 import co.edu.tiendaonline.data.dao.base.SQLDAO;
 import co.edu.tiendaonline.data.entity.ClienteEntity;
 import co.edu.tiendaonline.data.entity.TipoIdentificacionEntity;
+import co.edu.tiendaonline.data.entity.support.BooleanEntity;
 import co.edu.tiendaonline.data.entity.support.CorreoElectronicoClienteEntity;
 import co.edu.tiendaonline.data.entity.support.NombreCompletoClienteEntity;
 import co.edu.tiendaonline.data.entity.support.NumeroTelefonoMovilClienteEntity;
@@ -193,7 +194,7 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 				var clienteEntity = ClienteEntity.crear(
 						UUID.fromString(resultados.getObject("cli.id").toString()), 
 						TipoIdentificacionEntity.crear(UUID.fromString(resultados.getObject("cli.tipoIdentificacion").toString()), 
-								resultados.getString("ti.codigo"), resultados.getString("ti.nombre"), resultados.getBoolean("ti.estado")), 
+								resultados.getString("ti.codigo"), resultados.getString("ti.nombre"), BooleanEntity.crear(resultados.getBoolean("ti.estado"), false)), 
 						resultados.getString("cli.identificacion"),
 						NombreCompletoClienteEntity.crear(resultados.getString("cli.primerNombre"), resultados.getString("cli.segundoNombre"), 
 								resultados.getString("cli.primerApellido"), resultados.getString("cli.segundoApellido")),
@@ -336,7 +337,7 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 				var clienteEntity = ClienteEntity.crear(
 						UUID.fromString(resultados.getObject("cli.id").toString()), 
 						TipoIdentificacionEntity.crear(UUID.fromString(resultados.getObject("cli.tipoIdentificacion").toString()), 
-								resultados.getString("ti.codigo"), resultados.getString("ti.nombre"), resultados.getBoolean("ti.estado")), 
+								resultados.getString("ti.codigo"), resultados.getString("ti.nombre"), BooleanEntity.crear(resultados.getBoolean("ti.estado"), false)), 
 						resultados.getString("cli.identificacion"),
 						NombreCompletoClienteEntity.crear(resultados.getString("cli.primerNombre"), resultados.getString("cli.segundoNombre"), 
 								resultados.getString("cli.primerApellido"), resultados.getString("cli.segundoApellido")),

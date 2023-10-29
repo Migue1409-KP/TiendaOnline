@@ -27,7 +27,7 @@ public class TipoIdentificacionEntityMapper implements EntityMapper<TipoIdentifi
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		 
-		return TipoIdentificacionDomain.crear(entity.getId(), entity.getCodigo(), entity.getNombre(), entity.isEstado());
+		return TipoIdentificacionDomain.crear(entity.getId(), entity.getCodigo(), entity.getNombre(), BooleanEntityMapper.convertToDomain(entity.isEstado()));
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class TipoIdentificacionEntityMapper implements EntityMapper<TipoIdentifi
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		
-		return TipoIdentificacionEntity.crear(domain.getId(), domain.getCodigo(), domain.getNombre(), domain.isEstado());
+		return TipoIdentificacionEntity.crear(domain.getId(), domain.getCodigo(), domain.getNombre(), BooleanEntityMapper.convertToEntity(domain.isEstado()));
 	}
 
 	public static final TipoIdentificacionDomain convertToDomain(final TipoIdentificacionEntity entity) {		 
