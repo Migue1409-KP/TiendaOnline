@@ -10,9 +10,11 @@ import co.edu.tiendaonline.data.dao.ClienteDAO;
 import co.edu.tiendaonline.data.dao.TipoIdentificacionDAO;
 import co.edu.tiendaonline.data.dao.daofactory.DAOFactory;
 import co.edu.tiendaonline.service.bussineslogic.UseCase;
-import co.edu.tiendaonline.service.domain.cliente.ClienteDomain;
 import co.edu.tiendaonline.service.domain.support.BooleanDomain;
 import co.edu.tiendaonline.service.domain.tipoidentificacion.TipoIdentificacionDomain;
+import co.edu.tiendaonline.service.dto.ClienteDTO;
+import co.edu.tiendaonline.service.mapper.dto.concrete.ClienteDTOMapper;
+import co.edu.tiendaonline.service.mapper.dto.concrete.TipoIdentificacionDTOMapper;
 import co.edu.tiendaonline.service.mapper.entity.concrete.ClienteEntityMapper;
 
 public class EliminarTipoIdentifacionUseCase implements UseCase<TipoIdentificacionDomain> {
@@ -40,8 +42,10 @@ public class EliminarTipoIdentifacionUseCase implements UseCase<TipoIdentificaci
 	}
 	
 	private final void validarNoExistenciaRelacion(final UUID id) {
-		final var domain = TipoIdentificacionDomain.crear(id, null, null, BooleanDomain.crear(false, true));
-		final var cliente = ClienteDomain.crear(null, domain, null, null, null, null, null);
+		final var tipoIdentificacion = TipoIdentificacionDomain.crear(id, null, null, BooleanDomain.crear(false, true));
+		final var cliente = ClienteDTOMapper.convertToDomain(
+				ClienteDTO.crear().setTipoIdentificacion(TipoIdentificacionDTOMapper.convertToDTO(tipoIdentificacion)));
+		
 		final var resultados = getClienteDAO().consultar(ClienteEntityMapper.convertToEntity(cliente));
 		
 		if(!resultados.isEmpty()) {
