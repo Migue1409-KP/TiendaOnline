@@ -298,6 +298,20 @@ public final class CatalogoMensajes {
 				"Se ha presentado un problema en el metodo toDTO de la clase BooleanDTOMapper.No es posible mapear un tipo de identificación dto a partir de un Boolean domain nula"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000138, TipoMensaje.USUARIO, CategoriaMensaje.CONFIRMACION,
 				"El tipo de identificación fue modificado exitosamente"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000139, TipoMensaje.USUARIO, CategoriaMensaje.CONFIRMACION,
+				"El tipo de identificación fue eliminado exitosamente"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000140, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDomain de la clase NombreCompletoClienteDTOMapper.No es posible mapear un nombre completo cliente domain a partir de un nombre completo cliente dto nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000141, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDTO de la clase NombreCompletoClienteDTOMapper.No es posible mapear un nombre completo cliente dto a partir de un nombre completo cliente domain nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000142, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDomain de la clase CorreoElectronicoClienteDTOMapper.No es posible mapear un correo electronico cliente domain a partir de un correo electronico cliente dto nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000143, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDTO de la clase CorreoElectronicoClienteDTOMapper.No es posible mapear un correo electronico cliente dto a partir de un correo electronico cliente domain nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000144, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDomain de la clase NumeroTelefonoMovilClienteDTOMapper.No es posible mapear un numero de telefono cliente domain a partir de un numero de telefono cliente dto nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000145, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDTO de la clase NumeroTelefonoMovilClienteDTOMapper.No es posible mapear un numero de telefono cliente dto a partir de un numero de telefono cliente domain nula"));
 	}
 	
 	private static final void agregarMensaje(final Mensaje mensaje) {
