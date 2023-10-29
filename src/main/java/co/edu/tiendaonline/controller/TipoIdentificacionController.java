@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import co.edu.tiendaonline.controller.support.mapper.TipoIdentificacionResponse;
+import co.edu.tiendaonline.controller.support.request.Solicitar;
 import co.edu.tiendaonline.controller.support.response.Respuesta;
 import co.edu.tiendaonline.crosscutting.exception.TiendaOnlineException;
 import co.edu.tiendaonline.crosscutting.messages.CatalogoMensajes;
 import co.edu.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
-import co.edu.tiendaonline.crosscutting.util.UtilObjeto;
+import co.edu.tiendaonline.service.dto.BooleanDTO;
 import co.edu.tiendaonline.service.dto.TipoIdentificacionDTO;
 import co.edu.tiendaonline.service.facade.concrete.tipoidentificacion.ConsultarTipoIdentificacionFacade;
 import co.edu.tiendaonline.service.facade.concrete.tipoidentificacion.RegistrarTipoIdentificacionFacade;
@@ -31,27 +33,27 @@ public final class TipoIdentificacionController {
     private static final Logger logger = LogManager.getLogger(TipoIdentificacionController.class);
     
 	@GetMapping("/dummy")
-	public TipoIdentificacionDTO obtenerDummy() {
-		return TipoIdentificacionDTO.crear();
+	public Solicitar obtenerDummy() {
+		return new Solicitar();
 	}
 	
 	@GetMapping
-	public ResponseEntity<Respuesta<TipoIdentificacionDTO>> consultar(
+	public ResponseEntity<Respuesta<Solicitar>> consultar(
 			@RequestParam(name = "id", required = false) UUID id,
 			@RequestParam(name = "codigo", required = false) String codigo,
 			@RequestParam(name = "nombre", required = false) String nombre,
 			@RequestParam(name = "estado", required = false) Boolean estado) {
-		final Respuesta<TipoIdentificacionDTO> respuesta = new Respuesta<>();
+		final Respuesta<Solicitar> respuesta = new Respuesta<>();
 		HttpStatus codigoHttp = HttpStatus.BAD_REQUEST;
 		var dto = TipoIdentificacionDTO.crear()
 				.setId(id)
 				.setCodigo(codigo)
 				.setNombre(nombre)
-				.setEstado(UtilObjeto.obtenerValorDefecto(estado, false));
+				.setEstado(BooleanDTO.crear().setValor(estado != null ? estado: false).setValorDefecto(estado == null));
 
 		try {
 			ConsultarTipoIdentificacionFacade facade = new ConsultarTipoIdentificacionFacade();
-			respuesta.setDatos(facade.execute(dto));
+			respuesta.setDatos(TipoIdentificacionResponse.convertListToResponse(facade.execute(dto)));
 			codigoHttp = HttpStatus.OK;
 			respuesta.getMensajes().add(CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000133));
 		} catch (TiendaOnlineException e) {
@@ -65,18 +67,19 @@ public final class TipoIdentificacionController {
 		return new ResponseEntity<>(respuesta, codigoHttp);
 	}
 	
-	@GetMapping("/{id}")
-	public String consultarPorId(@PathVariable("id") UUID id) {
-		return "Hola mundo";
-	}
-	
 	@PostMapping
-	public ResponseEntity<Respuesta<TipoIdentificacionDTO>> registrar(@RequestBody TipoIdentificacionDTO dto) {
+	public ResponseEntity<Respuesta<TipoIdentificacionDTO>> registrar(@RequestBody Solicitar req) {
 		final Respuesta<TipoIdentificacionDTO> respuesta = new Respuesta<>();
 		HttpStatus codigoHttp = HttpStatus.BAD_REQUEST;
 		
 		try {
 			RegistrarTipoIdentificacionFacade facade = new RegistrarTipoIdentificacionFacade();
+			var dto = TipoIdentificacionDTO.crear()
+			.setNombre(req.getNombre())
+			.setCodigo(req.getCodigo())
+			.setEstado(BooleanDTO.crear()
+					.setValor(req.isEstado())
+					.setValorDefecto(false));
 			facade.execute(dto);
 			codigoHttp = HttpStatus.OK;
 			respuesta.getMensajes().add(CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000130));
