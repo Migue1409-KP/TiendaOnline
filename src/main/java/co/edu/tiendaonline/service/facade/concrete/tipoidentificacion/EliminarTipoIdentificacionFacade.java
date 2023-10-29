@@ -32,8 +32,8 @@ public final class EliminarTipoIdentificacionFacade implements Facade<TipoIdenti
 			throw e;
 		} catch (Exception e) {
 			daofactory.cancelarTransaccion();
-			final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000125);
-			final var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000126);
+			final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000174);
+			final var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000175);
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		} finally {
 			daofactory.cerrarConexion();
