@@ -10,7 +10,6 @@ import co.edu.tiendaonline.data.dao.ClienteDAO;
 import co.edu.tiendaonline.data.dao.daofactory.DAOFactory;
 import co.edu.tiendaonline.service.bussineslogic.UseCase;
 import co.edu.tiendaonline.service.domain.cliente.ClienteDomain;
-import co.edu.tiendaonline.service.mapper.entity.concrete.ClienteEntityMapper;
 
 public class EliminarClienteUseCase implements UseCase<ClienteDomain> {
 
@@ -27,10 +26,7 @@ public class EliminarClienteUseCase implements UseCase<ClienteDomain> {
 	}
 	
 	private final void validarExistenciaRegistro(final UUID id) {
-		//TODO: improve method validations
-		final var domain = ClienteDomain.crear(id, null, null, null, null, null, null);
-		final var entity = ClienteEntityMapper.convertToEntity(domain);
-		final var resultados = getClienteDAO().consultar(entity);
+		final var resultados = getClienteDAO().consultarPorId(id);
 		
 		if(resultados.isEmpty()) {
 			final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000107);

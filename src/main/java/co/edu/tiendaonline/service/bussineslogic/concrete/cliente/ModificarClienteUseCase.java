@@ -13,6 +13,14 @@ import co.edu.tiendaonline.service.domain.cliente.ClienteDomain;
 import co.edu.tiendaonline.service.domain.correoelectronicocliente.CorreoElectronicoClienteDomain;
 import co.edu.tiendaonline.service.domain.nombrecompletocliente.NombreCompletoClienteDomain;
 import co.edu.tiendaonline.service.domain.numerotelefonomovilcliente.NumeroTelefonoMovilClienteDomain;
+import co.edu.tiendaonline.service.dto.CorreoElectronicoClienteDTO;
+import co.edu.tiendaonline.service.dto.NombreCompletoClienteDTO;
+import co.edu.tiendaonline.service.dto.NumeroTelefonoMovilClienteDTO;
+import co.edu.tiendaonline.service.dto.TipoIdentificacionDTO;
+import co.edu.tiendaonline.service.mapper.dto.concrete.CorreoElectronicoClienteDTOMapper;
+import co.edu.tiendaonline.service.mapper.dto.concrete.NombreCompletoClienteDTOMapper;
+import co.edu.tiendaonline.service.mapper.dto.concrete.NumeroTelefonoMovilClienteDTOMapper;
+import co.edu.tiendaonline.service.mapper.dto.concrete.TipoIdentificacionDTOMapper;
 import co.edu.tiendaonline.service.mapper.entity.concrete.ClienteEntityMapper;
 
 public class ModificarClienteUseCase implements UseCase<ClienteDomain> {
@@ -43,8 +51,10 @@ public class ModificarClienteUseCase implements UseCase<ClienteDomain> {
 	}
 	
 	private final void validarNoExistenciaMismoNombre(final NombreCompletoClienteDomain nombre) {
-		//TODO: improve method validations
-		final var domain = ClienteDomain.crear(null, null, null, nombre, null, null, null);
+		final var domain = ClienteDomain.crear(null,
+				TipoIdentificacionDTOMapper.convertToDomain(TipoIdentificacionDTO.crear()), null, nombre,
+				CorreoElectronicoClienteDTOMapper.convertToDomain(CorreoElectronicoClienteDTO.crear()),
+				NumeroTelefonoMovilClienteDTOMapper.convertToDomain(NumeroTelefonoMovilClienteDTO.crear()), null);
 		final var entity = ClienteEntityMapper.convertToEntity(domain);
 		final var resultados = getClienteDAO().consultar(entity);
 		
@@ -55,8 +65,10 @@ public class ModificarClienteUseCase implements UseCase<ClienteDomain> {
 	}
 	
 	private final void validarNoExistenciaCorreoElectronico(final CorreoElectronicoClienteDomain correoElectronico) {
-		//TODO: improve method validations
-		final var domain = ClienteDomain.crear(null, null, null, null, correoElectronico, null, null);
+		final var domain = ClienteDomain.crear(null,
+				TipoIdentificacionDTOMapper.convertToDomain(TipoIdentificacionDTO.crear()), null,
+				NombreCompletoClienteDTOMapper.convertToDomain(NombreCompletoClienteDTO.crear()), correoElectronico,
+				NumeroTelefonoMovilClienteDTOMapper.convertToDomain(NumeroTelefonoMovilClienteDTO.crear()), null);
 		final var entity = ClienteEntityMapper.convertToEntity(domain);
 		final var resultados = getClienteDAO().consultar(entity);
 		
@@ -67,8 +79,11 @@ public class ModificarClienteUseCase implements UseCase<ClienteDomain> {
 	}
 	
 	private final void validarNoExistenciaNumeroTelefonoMovil(final NumeroTelefonoMovilClienteDomain numeroTelefono) {
-		//TODO: improve method validations
-		final var domain = ClienteDomain.crear(null, null, null, null, null, numeroTelefono, null);
+		final var domain = ClienteDomain.crear(null,
+				TipoIdentificacionDTOMapper.convertToDomain(TipoIdentificacionDTO.crear()), null,
+				NombreCompletoClienteDTOMapper.convertToDomain(NombreCompletoClienteDTO.crear()),
+				CorreoElectronicoClienteDTOMapper.convertToDomain(CorreoElectronicoClienteDTO.crear()), numeroTelefono,
+				null);
 		final var entity = ClienteEntityMapper.convertToEntity(domain);
 		final var resultados = getClienteDAO().consultar(entity);
 		
@@ -79,8 +94,10 @@ public class ModificarClienteUseCase implements UseCase<ClienteDomain> {
 	}
 	
 	private final void validarNoExistenciaIdentificacion(final ClienteDomain cliente) {
-		//TODO: improve method validations
-		final var domain = ClienteDomain.crear(null, cliente.getTipoIdentificacion(), cliente.getIdentificacion(), null, null, null, null);
+		final var domain = ClienteDomain.crear(null, cliente.getTipoIdentificacion(), cliente.getIdentificacion(),
+				NombreCompletoClienteDTOMapper.convertToDomain(NombreCompletoClienteDTO.crear()),
+				CorreoElectronicoClienteDTOMapper.convertToDomain(CorreoElectronicoClienteDTO.crear()),
+				NumeroTelefonoMovilClienteDTOMapper.convertToDomain(NumeroTelefonoMovilClienteDTO.crear()), null);
 		final var entity = ClienteEntityMapper.convertToEntity(domain);
 		final var resultados = getClienteDAO().consultar(entity);
 		

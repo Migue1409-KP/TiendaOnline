@@ -23,13 +23,13 @@ public class ModificarTipoIdentificacionUseCase implements UseCase<TipoIdentific
 
 	@Override
 	public void execute(TipoIdentificacionDomain domain) {
-		validarNoExistenciaRegistro(domain.getId());
+		validarExistenciaRegistro(domain.getId());
 		validarNoExistenciaMismoCodigo(domain.getId(), domain.getCodigo());
 		validarNoExistenciaMismoNombre(domain.getId(), domain.getNombre());
 		actualizar(domain);
 	}
 	
-	private final void validarNoExistenciaRegistro(final UUID id) {
+	private final void validarExistenciaRegistro(final UUID id) {
 		final var resultados = getTipoIdentificacionDAO().consultarPorId(id);
 		
 		if(resultados.isEmpty()) {
