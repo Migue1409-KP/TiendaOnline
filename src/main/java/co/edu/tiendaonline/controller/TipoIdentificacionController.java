@@ -17,7 +17,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import co.edu.tiendaonline.controller.support.mapper.TipoIdentificacionResponse;
-import co.edu.tiendaonline.controller.support.request.Solicitar;
+import co.edu.tiendaonline.controller.support.request.SolicitarTipoIdentificacion;
 import co.edu.tiendaonline.controller.support.response.Respuesta;
 import co.edu.tiendaonline.crosscutting.exception.TiendaOnlineException;
 import co.edu.tiendaonline.crosscutting.messages.CatalogoMensajes;
@@ -35,17 +35,17 @@ public final class TipoIdentificacionController {
     private static final Logger logger = LogManager.getLogger(TipoIdentificacionController.class);
     
 	@GetMapping("/dummy")
-	public Solicitar obtenerDummy() {
-		return new Solicitar();
+	public SolicitarTipoIdentificacion obtenerDummy() {
+		return new SolicitarTipoIdentificacion();
 	}
 	
 	@GetMapping
-	public ResponseEntity<Respuesta<Solicitar>> consultar(
+	public ResponseEntity<Respuesta<SolicitarTipoIdentificacion>> consultar(
 			@RequestParam(name = "id", required = false) UUID id,
 			@RequestParam(name = "codigo", required = false) String codigo,
 			@RequestParam(name = "nombre", required = false) String nombre,
 			@RequestParam(name = "estado", required = false) Boolean estado) {
-		final Respuesta<Solicitar> respuesta = new Respuesta<>();
+		final Respuesta<SolicitarTipoIdentificacion> respuesta = new Respuesta<>();
 		HttpStatus codigoHttp = HttpStatus.BAD_REQUEST;
 		var dto = TipoIdentificacionDTO.crear()
 				.setId(id)
@@ -70,7 +70,7 @@ public final class TipoIdentificacionController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Respuesta<TipoIdentificacionDTO>> registrar(@RequestBody Solicitar req) {
+	public ResponseEntity<Respuesta<TipoIdentificacionDTO>> registrar(@RequestBody SolicitarTipoIdentificacion req) {
 		final Respuesta<TipoIdentificacionDTO> respuesta = new Respuesta<>();
 		HttpStatus codigoHttp = HttpStatus.BAD_REQUEST;
 		
@@ -100,7 +100,7 @@ public final class TipoIdentificacionController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Respuesta<TipoIdentificacionDTO>> modificar(@PathVariable("id") UUID id, @RequestBody Solicitar req) {
+	public ResponseEntity<Respuesta<TipoIdentificacionDTO>> modificar(@PathVariable("id") UUID id, @RequestBody SolicitarTipoIdentificacion req) {
 		final Respuesta<TipoIdentificacionDTO> respuesta = new Respuesta<>();
 		HttpStatus codigoHttp = HttpStatus.BAD_REQUEST;
 		
