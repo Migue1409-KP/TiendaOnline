@@ -25,6 +25,7 @@ import co.edu.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
 import co.edu.tiendaonline.service.dto.BooleanDTO;
 import co.edu.tiendaonline.service.dto.TipoIdentificacionDTO;
 import co.edu.tiendaonline.service.facade.concrete.tipoidentificacion.ConsultarTipoIdentificacionFacade;
+import co.edu.tiendaonline.service.facade.concrete.tipoidentificacion.ModificarTipoIdentificacionFacade;
 import co.edu.tiendaonline.service.facade.concrete.tipoidentificacion.RegistrarTipoIdentificacionFacade;
 
 @RestController
@@ -98,8 +99,34 @@ public final class TipoIdentificacionController {
 	}
 	
 	@PutMapping("/{id}")
-	public String modificar(@PathVariable("id") UUID id, @RequestBody TipoIdentificacionDTO dto) {
-		return "Hola mundo";
+	public ResponseEntity<Respuesta<TipoIdentificacionDTO>> modificar(@PathVariable("id") UUID id, @RequestBody Solicitar req) {
+		final Respuesta<TipoIdentificacionDTO> respuesta = new Respuesta<>();
+		HttpStatus codigoHttp = HttpStatus.BAD_REQUEST;
+		
+		try {
+			ModificarTipoIdentificacionFacade facade = new ModificarTipoIdentificacionFacade();
+			var dto = TipoIdentificacionDTO.crear()
+			.setId(id)
+			.setNombre(req.getNombre())
+			.setCodigo(req.getCodigo())
+			.setEstado(BooleanDTO.crear()
+					.setValor(req.isEstado())
+					.setValorDefecto(false));
+			facade.execute(dto);
+			codigoHttp = HttpStatus.OK;
+			respuesta.getMensajes().add(CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000138));
+		} catch (TiendaOnlineException e) {
+			respuesta.getMensajes().add(e.getMensajeTecnico());
+			//System.err.println(e.getLugar());
+			//e.getExcepcionRaiz().printStackTrace();
+			logger.error(e.getLugar(), e);
+		} catch (Exception e) {
+			respuesta.getMensajes().add(CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000059));
+			//e.printStackTrace();
+			logger.error(e);
+		}
+		
+		return new ResponseEntity<>(respuesta, codigoHttp);
 	}
 	
 	@DeleteMapping("/{id}")

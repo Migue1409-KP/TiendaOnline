@@ -296,6 +296,8 @@ public final class CatalogoMensajes {
 				"Se ha presentado un problema en el metodo toDomain de la clase BooleanDTOMapper.No es posible mapear un Boolean domain a partir de una de un Boolean dto nula"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000137, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema en el metodo toDTO de la clase BooleanDTOMapper.No es posible mapear un tipo de identificación dto a partir de un Boolean domain nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000138, TipoMensaje.USUARIO, CategoriaMensaje.CONFIRMACION,
+				"El tipo de identificación fue modificado exitosamente"));
 	}
 	
 	private static final void agregarMensaje(final Mensaje mensaje) {

@@ -24,8 +24,8 @@ public class ModificarTipoIdentificacionUseCase implements UseCase<TipoIdentific
 	@Override
 	public void execute(TipoIdentificacionDomain domain) {
 		validarNoExistenciaRegistro(domain.getId());
-		validarNoExistenciaMismoCodigo(domain.getCodigo());
-		validarNoExistenciaMismoNombre(domain.getNombre());
+		validarNoExistenciaMismoCodigo(domain.getId(), domain.getCodigo());
+		validarNoExistenciaMismoNombre(domain.getId(), domain.getNombre());
 		actualizar(domain);
 	}
 	
@@ -38,27 +38,35 @@ public class ModificarTipoIdentificacionUseCase implements UseCase<TipoIdentific
 		}
 	}
 	
-	private final void validarNoExistenciaMismoCodigo(final String codigo) {
+	private final void validarNoExistenciaMismoCodigo(final UUID id, final String codigo) {
 		//TODO: improve method validations
 		final var domain = TipoIdentificacionDomain.crear(null, codigo, null, BooleanDomain.crear(false, true));
 		final var entity = TipoIdentificacionEntityMapper.convertToEntity(domain);
 		final var resultados = getTipoIdentificacionDAO().consultar(entity);
 		
 		if(!resultados.isEmpty()) {
-			final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000093);
-			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
+			for (int i = 0; i < resultados.size(); i++) {
+				if(!resultados.get(i).getId().equals(id)) {
+					final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000093);
+					throw ServiceTiendaOnlineException.crear(mensajeUsuario);		
+				}
+			}
 		}
 	}
 	
-	private final void validarNoExistenciaMismoNombre(final String nombre) {
+	private final void validarNoExistenciaMismoNombre(final UUID id, final String nombre) {
 		//TODO: improve method validations
 		final var domain = TipoIdentificacionDomain.crear(null, null, nombre, BooleanDomain.crear(false, true));
 		final var entity = TipoIdentificacionEntityMapper.convertToEntity(domain);
 		final var resultados = getTipoIdentificacionDAO().consultar(entity);
 		
 		if(!resultados.isEmpty()) {
-			final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000094);
-			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
+			for (int i = 0; i < resultados.size(); i++) {
+				if(!resultados.get(i).getId().equals(id)) {
+					final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000094);
+					throw ServiceTiendaOnlineException.crear(mensajeUsuario);		
+				}
+			}
 		}
 	}
 	
