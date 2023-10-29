@@ -1,20 +1,19 @@
 package co.edu.tiendaonline.service.dto;
 
-import co.edu.tiendaonline.crosscutting.util.UtilObjeto;
 import co.edu.tiendaonline.crosscutting.util.UtilTexto;
 
 public class CorreoElectronicoClienteDTO {
 	private String correoElectronico;
-	private boolean correoElectronicoConfirmado;
+	private BooleanDTO correoElectronicoConfirmado;
 	
 	public CorreoElectronicoClienteDTO() {
 		setCorreoElectronico(UtilTexto.VACIO);
-		setCorreoElectronicoConfirmado(false);
+		setCorreoElectronicoConfirmado(BooleanDTO.crear());
 	}
 	
-	public CorreoElectronicoClienteDTO(final String correoElectronico, final boolean correoElectronicoConfirmado) {
+	public CorreoElectronicoClienteDTO(final String correoElectronico, final BooleanDTO correoElectronicoConfirmado) {
 		setCorreoElectronico(correoElectronico);
-		setCorreoElectronicoConfirmado(correoElectronicoConfirmado);
+		setCorreoElectronicoConfirmado(BooleanDTO.crear().setValor(correoElectronicoConfirmado.isValor()).setValorDefecto(false));
 	}
 
 	public static final CorreoElectronicoClienteDTO crear() {
@@ -25,7 +24,7 @@ public class CorreoElectronicoClienteDTO {
 		return correoElectronico;
 	}
 	
-	public final boolean isCorreoElectronicoConfirmado() {
+	public final BooleanDTO isCorreoElectronicoConfirmado() {
 		return correoElectronicoConfirmado;
 	}
 
@@ -34,8 +33,9 @@ public class CorreoElectronicoClienteDTO {
 		return this;
 	}
 
-	public final CorreoElectronicoClienteDTO setCorreoElectronicoConfirmado(final boolean correoElectronicoConfirmado) {
-		this.correoElectronicoConfirmado = UtilObjeto.obtenerValorDefecto(correoElectronicoConfirmado, false);
+	public final CorreoElectronicoClienteDTO setCorreoElectronicoConfirmado(final BooleanDTO correoElectronicoConfirmado) {
+		this.correoElectronicoConfirmado = correoElectronicoConfirmado.isValorDefecto() ? BooleanDTO.crear()
+				: BooleanDTO.crear().setValor(correoElectronicoConfirmado.isValor()).setValorDefecto(false);
 		return this;
 	}
 }

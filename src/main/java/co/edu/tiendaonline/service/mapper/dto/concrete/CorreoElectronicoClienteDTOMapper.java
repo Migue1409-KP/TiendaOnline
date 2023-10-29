@@ -26,7 +26,7 @@ public class CorreoElectronicoClienteDTOMapper implements DTOMapper<CorreoElectr
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		
-		return CorreoElectronicoClienteDomain.crear(dto.getCorreoElectronico(), dto.isCorreoElectronicoConfirmado());
+		return CorreoElectronicoClienteDomain.crear(dto.getCorreoElectronico(), BooleanDTOMapper.convertToDomain(dto.isCorreoElectronicoConfirmado()));
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class CorreoElectronicoClienteDTOMapper implements DTOMapper<CorreoElectr
 		
 		return CorreoElectronicoClienteDTO.crear()
 				.setCorreoElectronico(domain.getCorreoElectronico())
-				.setCorreoElectronicoConfirmado(domain.isCorreoElectronicoConfirmado());
+				.setCorreoElectronicoConfirmado(BooleanDTOMapper.convertToDTO(domain.isCorreoElectronicoConfirmado()));
 	}
 	
 	public static final CorreoElectronicoClienteDomain convertToDomain(final CorreoElectronicoClienteDTO dto) {		 

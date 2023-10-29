@@ -1,15 +1,17 @@
 package co.edu.tiendaonline.service.domain.correoelectronicocliente;
 
+import co.edu.tiendaonline.service.domain.support.BooleanDomain;
+
 public class CorreoElectronicoClienteDomain {
 	private String correoElectronico;
-	private boolean correoElectronicoConfirmado;
+	private BooleanDomain correoElectronicoConfirmado;
 	
-	private CorreoElectronicoClienteDomain(final String correoElectronico, final boolean correoElectronicoConfirmado) {
+	private CorreoElectronicoClienteDomain(final String correoElectronico, final BooleanDomain correoElectronicoConfirmado) {
 		setCorreoElectronico(correoElectronico);
 		setCorreoElectronicoConfirmado(correoElectronicoConfirmado);
 	}
 	
-	public static final CorreoElectronicoClienteDomain crear(final String correoElectronico, final boolean correoElectronicoConfirmado) {
+	public static final CorreoElectronicoClienteDomain crear(final String correoElectronico, final BooleanDomain correoElectronicoConfirmado) {
 		return new CorreoElectronicoClienteDomain(correoElectronico, correoElectronicoConfirmado);
 	}
 
@@ -17,7 +19,7 @@ public class CorreoElectronicoClienteDomain {
 		this.correoElectronico = correoElectronico;
 	}
 
-	private final void setCorreoElectronicoConfirmado(final boolean correoElectronicoConfirmado) {
+	private final void setCorreoElectronicoConfirmado(final BooleanDomain correoElectronicoConfirmado) {
 		this.correoElectronicoConfirmado = correoElectronicoConfirmado;
 	}
 
@@ -25,7 +27,7 @@ public class CorreoElectronicoClienteDomain {
 		return correoElectronico;
 	}
 
-	public final boolean isCorreoElectronicoConfirmado() {
+	public final BooleanDomain isCorreoElectronicoConfirmado() {
 		return correoElectronicoConfirmado;
 	}
 }

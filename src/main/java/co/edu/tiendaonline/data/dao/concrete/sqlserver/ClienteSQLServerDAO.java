@@ -47,9 +47,9 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 			sentenciaPreparada.setString(6, cliente.getNombreCompleto().getPrimerApellido());
 			sentenciaPreparada.setString(7, cliente.getNombreCompleto().getSegundoApellido());
 			sentenciaPreparada.setString(8, cliente.getCorreoElectronico().getCorreoElectronico());
-			sentenciaPreparada.setBoolean(9, cliente.getCorreoElectronico().isCorreoElectronicoConfirmado());
+			sentenciaPreparada.setBoolean(9, cliente.getCorreoElectronico().isCorreoElectronicoConfirmado().isValor());
 			sentenciaPreparada.setString(10, cliente.getNumeroTelefonoMovil().getNumeroTelefonoMovil());
-			sentenciaPreparada.setBoolean(11, cliente.getNumeroTelefonoMovil().isNumeroTelefonoMovilConfirmado());
+			sentenciaPreparada.setBoolean(11, cliente.getNumeroTelefonoMovil().isNumeroTelefonoMovilConfirmado().isValor());
 			sentenciaPreparada.setDate(12, cliente.getFechaNacimiento());
 
 			sentenciaPreparada.executeUpdate();
@@ -91,9 +91,9 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 			sentenciaPreparada.setString(5, cliente.getNombreCompleto().getPrimerApellido());
 			sentenciaPreparada.setString(6, cliente.getNombreCompleto().getSegundoApellido());
 			sentenciaPreparada.setString(7, cliente.getCorreoElectronico().getCorreoElectronico());
-			sentenciaPreparada.setBoolean(8, cliente.getCorreoElectronico().isCorreoElectronicoConfirmado());
+			sentenciaPreparada.setBoolean(8, cliente.getCorreoElectronico().isCorreoElectronicoConfirmado().isValor());
 			sentenciaPreparada.setString(9, cliente.getNumeroTelefonoMovil().getNumeroTelefonoMovil());
-			sentenciaPreparada.setBoolean(10, cliente.getNumeroTelefonoMovil().isNumeroTelefonoMovilConfirmado());
+			sentenciaPreparada.setBoolean(10, cliente.getNumeroTelefonoMovil().isNumeroTelefonoMovilConfirmado().isValor());
 			sentenciaPreparada.setDate(11, cliente.getFechaNacimiento());
 			sentenciaPreparada.setObject(12, cliente.getId());
 			
@@ -192,17 +192,20 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 		try (final var resultados = sentenciaPreparada.executeQuery()) {
 			
 			if (resultados.next()) {
-				var clienteEntity = ClienteEntity.crear(
-						UUID.fromString(resultados.getObject("cli.id").toString()), 
-						TipoIdentificacionEntity.crear(UUID.fromString(resultados.getObject("cli.tipoIdentificacion").toString()), 
-								resultados.getString("ti.codigo"), resultados.getString("ti.nombre"), BooleanEntity.crear(resultados.getBoolean("ti.estado"), false)), 
+				var clienteEntity = ClienteEntity.crear(UUID.fromString(resultados.getObject("cli.id").toString()),
+						TipoIdentificacionEntity.crear(
+								UUID.fromString(resultados.getObject("cli.tipoIdentificacion").toString()),
+								resultados.getString("ti.codigo"), resultados.getString("ti.nombre"),
+								BooleanEntity.crear(resultados.getBoolean("ti.estado"), false)),
 						resultados.getString("cli.identificacion"),
-						NombreCompletoClienteEntity.crear(resultados.getString("cli.primerNombre"), resultados.getString("cli.segundoNombre"), 
-								resultados.getString("cli.primerApellido"), resultados.getString("cli.segundoApellido")),
-						CorreoElectronicoClienteEntity.crear(resultados.getString("cli.correoElectronico"), resultados.getBoolean("cli.correoElectronicoConfirmado")),
-						NumeroTelefonoMovilClienteEntity.crear(resultados.getString("cli.numeroTelefonoMovil"), resultados.getBoolean("cli.numeroTelefonoMovilConfirmado")),
-						resultados.getDate("cli.fechaNacimiento")
-						);
+						NombreCompletoClienteEntity.crear(resultados.getString("cli.primerNombre"),
+								resultados.getString("cli.segundoNombre"), resultados.getString("cli.primerApellido"),
+								resultados.getString("cli.segundoApellido")),
+						CorreoElectronicoClienteEntity.crear(resultados.getString("cli.correoElectronico"),
+								BooleanEntity.crear(resultados.getBoolean("cli.correoElectronicoConfirmado"), false)),
+						NumeroTelefonoMovilClienteEntity.crear(resultados.getString("cli.numeroTelefonoMovil"),
+								BooleanEntity.crear(resultados.getBoolean("cli.numeroTelefonoMovilConfirmado"), false)),
+						resultados.getDate("cli.fechaNacimiento"));
 				resultado = Optional.of(clienteEntity);
 			}
 		} catch (SQLException e) {
@@ -281,10 +284,10 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 					parametros.add(cliente.getCorreoElectronico().getCorreoElectronico());
 				}
 				
-				if(!UtilObjeto.esNulo(cliente.getCorreoElectronico().isCorreoElectronicoConfirmado())){
+				if(!cliente.getCorreoElectronico().isCorreoElectronicoConfirmado().isValorDefecto()){
 					sentencia.append(operadorCondicional).append(" cli.correoElectronicoConfirmado = ? ");
 					operadorCondicional = "AND";
-					parametros.add(cliente.getCorreoElectronico().isCorreoElectronicoConfirmado());
+					parametros.add(cliente.getCorreoElectronico().isCorreoElectronicoConfirmado().isValor());
 				}
 			}
 			
@@ -295,10 +298,10 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 					parametros.add(cliente.getNumeroTelefonoMovil().getNumeroTelefonoMovil());
 				}
 				
-				if(!UtilObjeto.esNulo(cliente.getNumeroTelefonoMovil().isNumeroTelefonoMovilConfirmado())){
+				if(!cliente.getNumeroTelefonoMovil().isNumeroTelefonoMovilConfirmado().isValorDefecto()){
 					sentencia.append(operadorCondicional).append(" cli.numeroTelefonoMovilConfirmado = ? ");
 					operadorCondicional = "AND";
-					parametros.add(cliente.getNumeroTelefonoMovil().isNumeroTelefonoMovilConfirmado());
+					parametros.add(cliente.getNumeroTelefonoMovil().isNumeroTelefonoMovilConfirmado().isValor());
 				}
 			}
 			
@@ -335,17 +338,20 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 		try (final var resultados = sentenciaPreparada.executeQuery()) {
 			
 			while (resultados.next()) {
-				var clienteEntity = ClienteEntity.crear(
-						UUID.fromString(resultados.getObject("cli.id").toString()), 
-						TipoIdentificacionEntity.crear(UUID.fromString(resultados.getObject("cli.tipoIdentificacion").toString()), 
-								resultados.getString("ti.codigo"), resultados.getString("ti.nombre"), BooleanEntity.crear(resultados.getBoolean("ti.estado"), false)), 
+				var clienteEntity = ClienteEntity.crear(UUID.fromString(resultados.getObject("cli.id").toString()),
+						TipoIdentificacionEntity.crear(
+								UUID.fromString(resultados.getObject("cli.tipoIdentificacion").toString()),
+								resultados.getString("ti.codigo"), resultados.getString("ti.nombre"),
+								BooleanEntity.crear(resultados.getBoolean("ti.estado"), false)),
 						resultados.getString("cli.identificacion"),
-						NombreCompletoClienteEntity.crear(resultados.getString("cli.primerNombre"), resultados.getString("cli.segundoNombre"), 
-								resultados.getString("cli.primerApellido"), resultados.getString("cli.segundoApellido")),
-						CorreoElectronicoClienteEntity.crear(resultados.getString("cli.correoElectronico"), resultados.getBoolean("cli.correoElectronicoConfirmado")),
-						NumeroTelefonoMovilClienteEntity.crear(resultados.getString("cli.numeroTelefonoMovil"), resultados.getBoolean("cli.numeroTelefonoMovilConfirmado")),
-						resultados.getDate("cli.fechaNacimiento")
-						);
+						NombreCompletoClienteEntity.crear(resultados.getString("cli.primerNombre"),
+								resultados.getString("cli.segundoNombre"), resultados.getString("cli.primerApellido"),
+								resultados.getString("cli.segundoApellido")),
+						CorreoElectronicoClienteEntity.crear(resultados.getString("cli.correoElectronico"),
+								BooleanEntity.crear(resultados.getBoolean("cli.correoElectronicoConfirmado"), false)),
+						NumeroTelefonoMovilClienteEntity.crear(resultados.getString("cli.numeroTelefonoMovil"),
+								BooleanEntity.crear(resultados.getBoolean("cli.numeroTelefonoMovilConfirmado"), false)),
+						resultados.getDate("cli.fechaNacimiento"));
 				listaResultados.add(clienteEntity);
 			}
 		} catch (SQLException e) {

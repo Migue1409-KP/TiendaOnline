@@ -24,7 +24,8 @@ public class CorreoElectronicoClienteEntityMapper implements EntityMapper<Correo
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		 
-		return CorreoElectronicoClienteDomain.crear(entity.getCorreoElectronico(), entity.isCorreoElectronicoConfirmado());
+		return CorreoElectronicoClienteDomain.crear(entity.getCorreoElectronico(),
+				BooleanEntityMapper.convertToDomain(entity.isCorreoElectronicoConfirmado()));
 	}
 
 	@Override
@@ -35,7 +36,8 @@ public class CorreoElectronicoClienteEntityMapper implements EntityMapper<Correo
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		
-		return CorreoElectronicoClienteEntity.crear(domain.getCorreoElectronico(), domain.isCorreoElectronicoConfirmado());
+		return CorreoElectronicoClienteEntity.crear(domain.getCorreoElectronico(),
+				BooleanEntityMapper.convertToEntity(domain.isCorreoElectronicoConfirmado()));
 	}
 
 	public static final CorreoElectronicoClienteDomain convertToDomain(final CorreoElectronicoClienteEntity entity) {		 

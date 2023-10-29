@@ -2,14 +2,14 @@ package co.edu.tiendaonline.data.entity.support;
 
 public class NumeroTelefonoMovilClienteEntity {
 	private String numeroTelefonoMovil;
-	private boolean numeroTelefonoMovilConfirmado;
+	private BooleanEntity numeroTelefonoMovilConfirmado;
 	
-	private NumeroTelefonoMovilClienteEntity(final String numeroTelefonoMovil, final boolean numeroTelefonoMovilConfirmado) {
+	private NumeroTelefonoMovilClienteEntity(final String numeroTelefonoMovil, final BooleanEntity numeroTelefonoMovilConfirmado) {
 		setNumeroTelefonoMovil(numeroTelefonoMovil);
 		setNumeroTelefonoMovilConfirmado(numeroTelefonoMovilConfirmado);
 	}
 
-	public static final NumeroTelefonoMovilClienteEntity crear(final String numeroTelefonoMovil, final boolean numeroTelefonoMovilConfirmado) {
+	public static final NumeroTelefonoMovilClienteEntity crear(final String numeroTelefonoMovil, final BooleanEntity numeroTelefonoMovilConfirmado) {
 		return new NumeroTelefonoMovilClienteEntity(numeroTelefonoMovil, numeroTelefonoMovilConfirmado);
 	}
 
@@ -17,7 +17,7 @@ public class NumeroTelefonoMovilClienteEntity {
 		this.numeroTelefonoMovil = numeroTelefonoMovil;
 	}
 
-	private final void setNumeroTelefonoMovilConfirmado(final boolean numeroTelefonoMovilConfirmado) {
+	private final void setNumeroTelefonoMovilConfirmado(final BooleanEntity numeroTelefonoMovilConfirmado) {
 		this.numeroTelefonoMovilConfirmado = numeroTelefonoMovilConfirmado;
 	}
 
@@ -25,7 +25,7 @@ public class NumeroTelefonoMovilClienteEntity {
 		return numeroTelefonoMovil;
 	}
 
-	public final boolean isNumeroTelefonoMovilConfirmado() {
+	public final BooleanEntity isNumeroTelefonoMovilConfirmado() {
 		return numeroTelefonoMovilConfirmado;
 	}
 }

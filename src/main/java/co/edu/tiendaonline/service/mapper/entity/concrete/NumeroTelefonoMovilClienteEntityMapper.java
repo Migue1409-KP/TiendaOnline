@@ -24,7 +24,8 @@ public class NumeroTelefonoMovilClienteEntityMapper implements EntityMapper<Nume
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		 
-		return NumeroTelefonoMovilClienteDomain.crear(entity.getNumeroTelefonoMovil(), entity.isNumeroTelefonoMovilConfirmado());
+		return NumeroTelefonoMovilClienteDomain.crear(entity.getNumeroTelefonoMovil(),
+				BooleanEntityMapper.convertToDomain(entity.isNumeroTelefonoMovilConfirmado()));
 	}
 
 	@Override
@@ -35,7 +36,8 @@ public class NumeroTelefonoMovilClienteEntityMapper implements EntityMapper<Nume
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		
-		return NumeroTelefonoMovilClienteEntity.crear(domain.getNumeroTelefonoMovil(), domain.isNumeroTelefonoMovilConfirmado());
+		return NumeroTelefonoMovilClienteEntity.crear(domain.getNumeroTelefonoMovil(),
+				BooleanEntityMapper.convertToEntity(domain.isNumeroTelefonoMovilConfirmado()));
 	}
 
 	public static final NumeroTelefonoMovilClienteDomain convertToDomain(final NumeroTelefonoMovilClienteEntity entity) {		 

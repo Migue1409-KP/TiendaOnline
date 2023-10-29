@@ -26,7 +26,7 @@ public class NumeroTelefonoMovilClienteDTOMapper implements DTOMapper<NumeroTele
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		
-		return NumeroTelefonoMovilClienteDomain.crear(dto.getNumeroTelefonoMovil(), dto.isNumeroTelefonoMovilConfirmado());
+		return NumeroTelefonoMovilClienteDomain.crear(dto.getNumeroTelefonoMovil(), BooleanDTOMapper.convertToDomain(dto.isNumeroTelefonoMovilConfirmado()));
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class NumeroTelefonoMovilClienteDTOMapper implements DTOMapper<NumeroTele
 		
 		return NumeroTelefonoMovilClienteDTO.crear()
 				.setNumeroTelefonoMovil(domain.getNumeroTelefonoMovil())
-				.setNumeroTelefonoMovilConfirmado(domain.isNumeroTelefonoMovilConfirmado());
+				.setNumeroTelefonoMovilConfirmado(BooleanDTOMapper.convertToDTO(domain.isNumeroTelefonoMovilConfirmado()));
 	}
 	
 	public static final NumeroTelefonoMovilClienteDomain convertToDomain(final NumeroTelefonoMovilClienteDTO dto) {		 
