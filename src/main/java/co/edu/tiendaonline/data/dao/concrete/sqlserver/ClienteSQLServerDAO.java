@@ -14,6 +14,7 @@ import co.edu.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
 import co.edu.tiendaonline.crosscutting.util.UtilFecha;
 import co.edu.tiendaonline.crosscutting.util.UtilObjeto;
 import co.edu.tiendaonline.crosscutting.util.UtilTexto;
+import co.edu.tiendaonline.crosscutting.util.UtilUUID;
 import co.edu.tiendaonline.data.dao.ClienteDAO;
 import co.edu.tiendaonline.data.dao.base.SQLDAO;
 import co.edu.tiendaonline.data.entity.ClienteEntity;
@@ -223,20 +224,20 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 		
 		sentencia.append("SELECT cli.id, cli.tipoIdentificacion, ti.codigo, ti.nombre, ti.estado, cli.identificacion, cli.primerNombre, cli.segundoNombre,"
 				+ " cli.primerApellido, cli.segundoApellido, cli.correoElectronico, cli.correoElectronicoConfirmado, cli.numeroTelefonoMovil,"
-				+ " cli.numeroTelefonoMovilConfirmado, cli.fechaNacimiento");
+				+ " cli.numeroTelefonoMovilConfirmado, cli.fechaNacimiento ");
 		sentencia.append("FROM  Cliente cli ");
 		sentencia.append("JOIN  TipoIdentificacion ti ");
-		sentencia.append("	ON  cli.tipoidentificacion = ti.id ");
+		sentencia.append("ON  cli.tipoidentificacion = ti.id ");
 		
 		if(!UtilObjeto.esNulo(cliente)) {
-			if(!UtilObjeto.esNulo(cliente.getId())) {
-				sentencia.append(operadorCondicional).append(" cli.id = ?");
+			if(!UtilUUID.esNulo(cliente.getId())) {
+				sentencia.append(operadorCondicional).append(" cli.id = ? ");
 				operadorCondicional = "AND";
 				parametros.add(cliente.getId());
 			}
 			
-			if(!UtilObjeto.esNulo(cliente.getTipoIdentificacion())) {
-				sentencia.append(operadorCondicional).append(" ti.tipoIdentificacion = ? ");
+			if(!UtilObjeto.esNulo(cliente.getTipoIdentificacion()) && !UtilUUID.esNulo(cliente.getTipoIdentificacion().getId())) {
+				sentencia.append(operadorCondicional).append(" ti.id = ? ");
 				operadorCondicional = "AND";
 				parametros.add(cliente.getTipoIdentificacion().getId());
 			}
@@ -307,7 +308,7 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 			}			
 		}
 		
-		sentencia.append("ORDER BY cli.primerNombre ASC ");			
+		sentencia.append("ORDER BY cli.primerNombre ASC ");
 		return sentencia.toString();
 	}
 
