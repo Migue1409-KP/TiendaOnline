@@ -312,6 +312,54 @@ public final class CatalogoMensajes {
 				"Se ha presentado un problema en el metodo toDomain de la clase NumeroTelefonoMovilClienteDTOMapper.No es posible mapear un numero de telefono cliente domain a partir de un numero de telefono cliente dto nula"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000145, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema en el metodo toDTO de la clase NumeroTelefonoMovilClienteDTOMapper.No es posible mapear un numero de telefono cliente dto a partir de un numero de telefono cliente domain nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000146, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"La longitud del primer nombre del cliente no es valida. La longitud maxima son 50 caracteres"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000147, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El primer nombre del cliente es un dato obligatorio"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000148, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El primer nombre del cliente solo puede contener letras"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000149, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"La longitud del segundo nombre del cliente no es valida. La longitud maxima son 50 caracteres"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000150, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El segundo nombre del cliente es un dato obligatorio"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000151, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El segundo nombre del cliente solo puede contener letras"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000152, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"La longitud del primer apellido del cliente no es valida. La longitud maxima son 50 caracteres"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000153, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El primer apellido del cliente es un dato obligatorio"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000154, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El primer apellido del cliente solo puede contener letras"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000155, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"La longitud del segundo apellido del cliente no es valida. La longitud maxima son 50 caracteres"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000156, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El segundo apellido del cliente es un dato obligatorio"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000157, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El segundo apellido del cliente solo puede contener letras"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000158, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"No es posible llevar a cabo la operación deseada con el cliente"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000159, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"La longitud del correo electronico del cliente no es valida. La longitud debe estar entre 10-320 caracteres"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000160, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El correo electronic del cliente es un dato obligatorio"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000161, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El correo electronic del cliente debe tener el formato de un correo electronico"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000162, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"La longitud del numero telefono movil del cliente no es valida. La longitud debe estar entre 10-50 caracteres"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000163, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El numero telefono movil del cliente es un dato obligatorio"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000164, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El numero telefono movil del cliente debe contener solo digitos"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000165, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El identificador de cliente es un dato obligatorio y no puede ser igual al UUID por defecto"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000166, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"La longitud de la identificación del cliente no es valida. La longitud debe estar entre 6-50 caracteres"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000167, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"La identificación del cliente es un dato obligatorio"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000168, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"La identificación del cliente debe contener unicamente digitos"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000169, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"La fecha de nacimiento del cliente es un dato obligatorio"));
 	}
 	
 	private static final void agregarMensaje(final Mensaje mensaje) {
