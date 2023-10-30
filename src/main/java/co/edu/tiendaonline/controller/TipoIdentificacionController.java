@@ -118,12 +118,9 @@ public final class TipoIdentificacionController {
 			respuesta.getMensajes().add(CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000138));
 		} catch (TiendaOnlineException e) {
 			respuesta.getMensajes().add(e.getMensajeTecnico());
-			//System.err.println(e.getLugar());
-			//e.getExcepcionRaiz().printStackTrace();
 			logger.error(e.getLugar(), e);
 		} catch (Exception e) {
-			respuesta.getMensajes().add(CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000059));
-			//e.printStackTrace();
+			respuesta.getMensajes().add(CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000041));
 			logger.error(e);
 		}
 		
@@ -148,7 +145,7 @@ public final class TipoIdentificacionController {
 			//e.getExcepcionRaiz().printStackTrace();
 			logger.error(e.getLugar(), e);
 		} catch (Exception e) {
-			respuesta.getMensajes().add(CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000062));
+			respuesta.getMensajes().add(CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000095));
 			//e.printStackTrace();
 			logger.error(e);
 		}

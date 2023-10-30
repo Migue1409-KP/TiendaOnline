@@ -39,7 +39,6 @@ public class ModificarTipoIdentificacionUseCase implements UseCase<TipoIdentific
 	}
 	
 	private final void validarNoExistenciaMismoCodigo(final UUID id, final String codigo) {
-		//TODO: improve method validations
 		final var domain = TipoIdentificacionDomain.crear(null, codigo, null, BooleanDomain.crear(false, true));
 		final var entity = TipoIdentificacionEntityMapper.convertToEntity(domain);
 		final var resultados = getTipoIdentificacionDAO().consultar(entity);
@@ -55,7 +54,6 @@ public class ModificarTipoIdentificacionUseCase implements UseCase<TipoIdentific
 	}
 	
 	private final void validarNoExistenciaMismoNombre(final UUID id, final String nombre) {
-		//TODO: improve method validations
 		final var domain = TipoIdentificacionDomain.crear(null, null, nombre, BooleanDomain.crear(false, true));
 		final var entity = TipoIdentificacionEntityMapper.convertToEntity(domain);
 		final var resultados = getTipoIdentificacionDAO().consultar(entity);

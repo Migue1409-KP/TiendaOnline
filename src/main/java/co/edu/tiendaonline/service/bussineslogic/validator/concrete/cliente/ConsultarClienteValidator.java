@@ -33,7 +33,7 @@ public class ConsultarClienteValidator implements Validator<ClienteDomain> {
 			}
 			
 			if(!UtilObjeto.esNulo(data.getTipoIdentificacion()) && !UtilUUID.esNulo(data.getTipoIdentificacion().getId())) {
-				IdTipoIdentificacionValidationRule.ejecutarValidacion(data.getId());
+				IdTipoIdentificacionValidationRule.ejecutarValidacion(data.getTipoIdentificacion().getId());
 			}
 			
 			if(!UtilTexto.estaVacio(data.getIdentificacion())) {
