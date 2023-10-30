@@ -229,7 +229,7 @@ public final class CatalogoMensajes {
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000103, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
 				"No se puede registrar el cliente. Ya existe un tipo cliente con el numero telefono movil registrado"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000104, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
-				"No se puede registrar el cliente. Ya existe un tipo cliente con el tipo de identificación e identificación registrado"));
+				"No se puede registrar el cliente. Ya existe un cliente la identificación registrado"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000105, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema tratando de llevar eliminar un cliente"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000106, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
@@ -384,6 +384,18 @@ public final class CatalogoMensajes {
 				"Se presento un error inesperado tratando de registrar un nuevo cliente"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000181, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema inesperado en función execute en RegistrarClienteFacade tratando de registrar un nuevo cliente.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000182, TipoMensaje.USUARIO, CategoriaMensaje.CONFIRMACION,
+				"El cliente fue consultado exitosamente"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000183, TipoMensaje.USUARIO, CategoriaMensaje.CONFIRMACION,
+				"El cliente fue registrado exitosamente"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000184, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"No se puede registrar el cliente. No existe el tipo de identificación indicado"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000185, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"No se puede modificar el cliente. No existe el tipo de identificación indicado"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000186, TipoMensaje.USUARIO, CategoriaMensaje.CONFIRMACION,
+				"El cliente fue eliminado exitosamente"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000187, TipoMensaje.USUARIO, CategoriaMensaje.CONFIRMACION,
+				"El cliente fue modificado exitosamente"));
 	}
 	
 	private static final void agregarMensaje(final Mensaje mensaje) {

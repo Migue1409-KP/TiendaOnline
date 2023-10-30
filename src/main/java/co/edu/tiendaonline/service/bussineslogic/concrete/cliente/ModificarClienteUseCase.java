@@ -1,5 +1,6 @@
 package co.edu.tiendaonline.service.bussineslogic.concrete.cliente;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import co.edu.tiendaonline.crosscutting.exception.concrete.ServiceTiendaOnlineException;
@@ -7,7 +8,9 @@ import co.edu.tiendaonline.crosscutting.messages.CatalogoMensajes;
 import co.edu.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
 import co.edu.tiendaonline.crosscutting.util.UtilObjeto;
 import co.edu.tiendaonline.data.dao.ClienteDAO;
+import co.edu.tiendaonline.data.dao.TipoIdentificacionDAO;
 import co.edu.tiendaonline.data.dao.daofactory.DAOFactory;
+import co.edu.tiendaonline.data.entity.TipoIdentificacionEntity;
 import co.edu.tiendaonline.service.bussineslogic.UseCase;
 import co.edu.tiendaonline.service.domain.cliente.ClienteDomain;
 import co.edu.tiendaonline.service.domain.correoelectronicocliente.CorreoElectronicoClienteDomain;
@@ -34,11 +37,12 @@ public class ModificarClienteUseCase implements UseCase<ClienteDomain> {
 	@Override
 	public void execute(ClienteDomain domain) {
 		validarExistenciaRegistro(domain.getId());
-		validarNoExistenciaMismoNombre(domain.getNombreCompleto());
-		validarNoExistenciaCorreoElectronico(domain.getCorreoElectronico());
-		validarNoExistenciaNumeroTelefonoMovil(domain.getNumeroTelefonoMovil());
+		validarNoExistenciaMismoNombre(domain.getId(), domain.getNombreCompleto());
+		validarNoExistenciaCorreoElectronico(domain.getId(), domain.getCorreoElectronico());
+		validarNoExistenciaNumeroTelefonoMovil(domain.getId(), domain.getNumeroTelefonoMovil());
 		validarNoExistenciaIdentificacion(domain);
-		eliminar(domain.getId());
+		validarExistenciaTipoIdentificacion(domain.getTipoIdentificacion().getId());
+		modificar(domain);
 	}
 	
 	private final void validarExistenciaRegistro(final UUID id) {
@@ -50,7 +54,7 @@ public class ModificarClienteUseCase implements UseCase<ClienteDomain> {
 		}
 	}
 	
-	private final void validarNoExistenciaMismoNombre(final NombreCompletoClienteDomain nombre) {
+	private final void validarNoExistenciaMismoNombre(final UUID id, final NombreCompletoClienteDomain nombre) {
 		final var domain = ClienteDomain.crear(null,
 				TipoIdentificacionDTOMapper.convertToDomain(TipoIdentificacionDTO.crear()), null, nombre,
 				CorreoElectronicoClienteDTOMapper.convertToDomain(CorreoElectronicoClienteDTO.crear()),
@@ -59,12 +63,16 @@ public class ModificarClienteUseCase implements UseCase<ClienteDomain> {
 		final var resultados = getClienteDAO().consultar(entity);
 		
 		if(!resultados.isEmpty()) {
-			final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000113);
-			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
+			for (int i = 0; i < resultados.size(); i++) {
+				if(!resultados.get(i).getId().equals(id)) {
+					final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000113);
+					throw ServiceTiendaOnlineException.crear(mensajeUsuario);	
+				}
+			}
 		}
 	}
 	
-	private final void validarNoExistenciaCorreoElectronico(final CorreoElectronicoClienteDomain correoElectronico) {
+	private final void validarNoExistenciaCorreoElectronico(final UUID id, final CorreoElectronicoClienteDomain correoElectronico) {
 		final var domain = ClienteDomain.crear(null,
 				TipoIdentificacionDTOMapper.convertToDomain(TipoIdentificacionDTO.crear()), null,
 				NombreCompletoClienteDTOMapper.convertToDomain(NombreCompletoClienteDTO.crear()), correoElectronico,
@@ -73,12 +81,16 @@ public class ModificarClienteUseCase implements UseCase<ClienteDomain> {
 		final var resultados = getClienteDAO().consultar(entity);
 		
 		if(!resultados.isEmpty()) {
-			final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000112);
-			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
+			for (int i = 0; i < resultados.size(); i++) {
+				if(!resultados.get(i).getId().equals(id)) {
+					final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000112);
+					throw ServiceTiendaOnlineException.crear(mensajeUsuario);	
+				}
+			}
 		}
 	}
 	
-	private final void validarNoExistenciaNumeroTelefonoMovil(final NumeroTelefonoMovilClienteDomain numeroTelefono) {
+	private final void validarNoExistenciaNumeroTelefonoMovil(final UUID id, final NumeroTelefonoMovilClienteDomain numeroTelefono) {
 		final var domain = ClienteDomain.crear(null,
 				TipoIdentificacionDTOMapper.convertToDomain(TipoIdentificacionDTO.crear()), null,
 				NombreCompletoClienteDTOMapper.convertToDomain(NombreCompletoClienteDTO.crear()),
@@ -88,8 +100,12 @@ public class ModificarClienteUseCase implements UseCase<ClienteDomain> {
 		final var resultados = getClienteDAO().consultar(entity);
 		
 		if(!resultados.isEmpty()) {
-			final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000111);
-			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
+			for (int i = 0; i < resultados.size(); i++) {
+				if(!resultados.get(i).getId().equals(id)) {
+					final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000111);
+					throw ServiceTiendaOnlineException.crear(mensajeUsuario);
+				}
+			}
 		}
 	}
 	
@@ -102,13 +118,27 @@ public class ModificarClienteUseCase implements UseCase<ClienteDomain> {
 		final var resultados = getClienteDAO().consultar(entity);
 		
 		if(!resultados.isEmpty()) {
-			final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000110);
+			for (int i = 0; i < resultados.size(); i++) {
+				if(!resultados.get(i).getId().equals(cliente.getId())) {
+					final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000110);
+					throw ServiceTiendaOnlineException.crear(mensajeUsuario);
+				}
+			}
+		}
+	}
+	
+	private final void validarExistenciaTipoIdentificacion(final UUID tipoIdentificacion) {
+		Optional<TipoIdentificacionEntity> optional;
+		optional = getTipoIdentificacionDAO().consultarPorId(tipoIdentificacion);
+		
+		if(!optional.isPresent()) {
+			final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000185);
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
 		}
 	}
 	
-	private void eliminar(final UUID id) {
-		getClienteDAO().eliminar(id);
+	private void modificar(final ClienteDomain domain) {
+		getClienteDAO().modificar(ClienteEntityMapper.convertToEntity(domain));
 	}
 	
 	private final DAOFactory getFactoria() {
@@ -129,4 +159,7 @@ public class ModificarClienteUseCase implements UseCase<ClienteDomain> {
 		return getFactoria().obtenerClienteDAO();
 	}
 
+	private final TipoIdentificacionDAO getTipoIdentificacionDAO() {
+		return getFactoria().obtenerTipoIdentificacionDAO();
+	}
 }
