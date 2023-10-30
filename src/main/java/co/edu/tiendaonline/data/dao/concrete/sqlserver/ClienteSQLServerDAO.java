@@ -142,7 +142,7 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 		sentencia.append("FROM  Cliente cli ");
 		sentencia.append("JOIN  TipoIdentificacion ti ");
 		sentencia.append("	ON  cli.tipoidentificacion = ti.id ");
-		sentencia.append("WHERE  id = ? ");
+		sentencia.append("WHERE  cli.id = ? ");
 
 		Optional<ClienteEntity> resultado = Optional.empty();
 
@@ -192,20 +192,20 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 		try (final var resultados = sentenciaPreparada.executeQuery()) {
 			
 			if (resultados.next()) {
-				var clienteEntity = ClienteEntity.crear(UUID.fromString(resultados.getObject("cli.id").toString()),
+				var clienteEntity = ClienteEntity.crear(UUID.fromString(resultados.getObject("id").toString()),
 						TipoIdentificacionEntity.crear(
-								UUID.fromString(resultados.getObject("cli.tipoIdentificacion").toString()),
-								resultados.getString("ti.codigo"), resultados.getString("ti.nombre"),
-								BooleanEntity.crear(resultados.getBoolean("ti.estado"), false)),
-						resultados.getString("cli.identificacion"),
-						NombreCompletoClienteEntity.crear(resultados.getString("cli.primerNombre"),
-								resultados.getString("cli.segundoNombre"), resultados.getString("cli.primerApellido"),
-								resultados.getString("cli.segundoApellido")),
-						CorreoElectronicoClienteEntity.crear(resultados.getString("cli.correoElectronico"),
-								BooleanEntity.crear(resultados.getBoolean("cli.correoElectronicoConfirmado"), false)),
-						NumeroTelefonoMovilClienteEntity.crear(resultados.getString("cli.numeroTelefonoMovil"),
-								BooleanEntity.crear(resultados.getBoolean("cli.numeroTelefonoMovilConfirmado"), false)),
-						resultados.getDate("cli.fechaNacimiento"));
+								UUID.fromString(resultados.getObject("tipoIdentificacion").toString()),
+								resultados.getString("codigo"), resultados.getString("nombre"),
+								BooleanEntity.crear(resultados.getBoolean("estado"), false)),
+						resultados.getString("identificacion"),
+						NombreCompletoClienteEntity.crear(resultados.getString("primerNombre"),
+								resultados.getString("segundoNombre"), resultados.getString("primerApellido"),
+								resultados.getString("segundoApellido")),
+						CorreoElectronicoClienteEntity.crear(resultados.getString("correoElectronico"),
+								BooleanEntity.crear(resultados.getBoolean("correoElectronicoConfirmado"), false)),
+						NumeroTelefonoMovilClienteEntity.crear(resultados.getString("numeroTelefonoMovil"),
+								BooleanEntity.crear(resultados.getBoolean("numeroTelefonoMovilConfirmado"), false)),
+						resultados.getDate("fechaNacimiento"));
 				resultado = Optional.of(clienteEntity);
 			}
 		} catch (SQLException e) {
@@ -336,22 +336,21 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 		final var listaResultados = new ArrayList<ClienteEntity>();
 		
 		try (final var resultados = sentenciaPreparada.executeQuery()) {
-			
 			while (resultados.next()) {
-				var clienteEntity = ClienteEntity.crear(UUID.fromString(resultados.getObject("cli.id").toString()),
+				var clienteEntity = ClienteEntity.crear(UUID.fromString(resultados.getObject("id").toString()),
 						TipoIdentificacionEntity.crear(
-								UUID.fromString(resultados.getObject("cli.tipoIdentificacion").toString()),
-								resultados.getString("ti.codigo"), resultados.getString("ti.nombre"),
-								BooleanEntity.crear(resultados.getBoolean("ti.estado"), false)),
-						resultados.getString("cli.identificacion"),
-						NombreCompletoClienteEntity.crear(resultados.getString("cli.primerNombre"),
-								resultados.getString("cli.segundoNombre"), resultados.getString("cli.primerApellido"),
-								resultados.getString("cli.segundoApellido")),
-						CorreoElectronicoClienteEntity.crear(resultados.getString("cli.correoElectronico"),
-								BooleanEntity.crear(resultados.getBoolean("cli.correoElectronicoConfirmado"), false)),
-						NumeroTelefonoMovilClienteEntity.crear(resultados.getString("cli.numeroTelefonoMovil"),
-								BooleanEntity.crear(resultados.getBoolean("cli.numeroTelefonoMovilConfirmado"), false)),
-						resultados.getDate("cli.fechaNacimiento"));
+								UUID.fromString(resultados.getObject("tipoIdentificacion").toString()),
+								resultados.getString("codigo"), resultados.getString("nombre"),
+								BooleanEntity.crear(resultados.getBoolean("estado"), false)),
+						resultados.getString("identificacion"),
+						NombreCompletoClienteEntity.crear(resultados.getString("primerNombre"),
+								resultados.getString("segundoNombre"), resultados.getString("primerApellido"),
+								resultados.getString("segundoApellido")),
+						CorreoElectronicoClienteEntity.crear(resultados.getString("correoElectronico"),
+								BooleanEntity.crear(resultados.getBoolean("correoElectronicoConfirmado"), false)),
+						NumeroTelefonoMovilClienteEntity.crear(resultados.getString("numeroTelefonoMovil"),
+								BooleanEntity.crear(resultados.getBoolean("numeroTelefonoMovilConfirmado"), false)),
+						resultados.getDate("fechaNacimiento"));
 				listaResultados.add(clienteEntity);
 			}
 		} catch (SQLException e) {
