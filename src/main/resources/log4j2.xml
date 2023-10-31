@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="warn" name="MyApp" packages="">
+<Configuration status="warn" name="MyApp" packages="co.edu.tiendaonline.controller">
     <Appenders>
         <File name="File" fileName="logs/myapp.log">
             <PatternLayout pattern="%d %p %C{1.} [%t] %m%n" />
