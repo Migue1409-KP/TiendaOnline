@@ -1,4 +1,4 @@
-package co.edu.tiendaonline.controller;
+package co.edu.tiendaonline.controller.cliente.concrete;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
