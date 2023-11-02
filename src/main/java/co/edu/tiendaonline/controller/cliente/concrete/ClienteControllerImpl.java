@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.edu.tiendaonline.controller.cliente.ClienteController;
 import co.edu.tiendaonline.controller.support.mapper.ClienteResponse;
 import co.edu.tiendaonline.controller.support.request.SolicitarCliente;
 import co.edu.tiendaonline.controller.support.response.Respuesta;
@@ -37,8 +38,8 @@ import org.apache.logging.log4j.Logger;
 
 @RestController
 @RequestMapping("/api/cliente")
-public class ClienteController {
-	private static final Logger logger = LogManager.getLogger(ClienteController.class);
+public class ClienteControllerImpl implements ClienteController{
+	private static final Logger logger = LogManager.getLogger(ClienteControllerImpl.class);
 	
 	@GetMapping("/dummy")
 	public SolicitarCliente obtenerDummy() {
