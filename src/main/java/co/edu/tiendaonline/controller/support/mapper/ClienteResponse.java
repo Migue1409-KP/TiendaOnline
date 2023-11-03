@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.edu.tiendaonline.controller.support.request.SolicitarCliente;
+import co.edu.tiendaonline.controller.support.request.SolicitarTipoIdentificacion;
 import co.edu.tiendaonline.service.dto.ClienteDTO;
 
 public class ClienteResponse {
@@ -12,10 +13,13 @@ public class ClienteResponse {
 	}
 	
 	public static final SolicitarCliente convertToResponse(ClienteDTO dto) {
-		return new SolicitarCliente(dto.getId(), dto.getTipoIdentificacion().getId(), dto.getIdentificacion(),
-				dto.getNombreCompleto().getPrimerNombre(), dto.getNombreCompleto().getSegundoNombre(),
-				dto.getNombreCompleto().getPrimerApellido(), dto.getNombreCompleto().getSegundoApellido(),
-				dto.getCorreoElectronico().getCorreoElectronico(),
+		return new SolicitarCliente(dto.getId(),
+				new SolicitarTipoIdentificacion(dto.getTipoIdentificacion().getId(),
+						dto.getTipoIdentificacion().getCodigo(), dto.getTipoIdentificacion().getNombre(),
+						dto.getTipoIdentificacion().isEstado().isValor()),
+				dto.getIdentificacion(), dto.getNombreCompleto().getPrimerNombre(),
+				dto.getNombreCompleto().getSegundoNombre(), dto.getNombreCompleto().getPrimerApellido(),
+				dto.getNombreCompleto().getSegundoApellido(), dto.getCorreoElectronico().getCorreoElectronico(),
 				dto.getCorreoElectronico().isCorreoElectronicoConfirmado().isValor(),
 				dto.getNumeroTelefonoMovil().getNumeroTelefonoMovil(),
 				dto.getNumeroTelefonoMovil().isNumeroTelefonoMovilConfirmado().isValor(), dto.getFechaNacimiento());

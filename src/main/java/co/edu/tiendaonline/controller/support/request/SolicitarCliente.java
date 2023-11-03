@@ -9,7 +9,7 @@ import co.edu.tiendaonline.crosscutting.util.UtilUUID;
 
 public class SolicitarCliente {
     private UUID id;
-    private UUID tipoIdentificacion;
+    private SolicitarTipoIdentificacion tipoIdentificacion;
     private String identificacion;
     private String primerNombre;
     private String segundoNombre;
@@ -23,7 +23,7 @@ public class SolicitarCliente {
 	
 	public SolicitarCliente() {
 		setId(UtilUUID.UUIDDEFECTO);
-		setTipoIdentificacion(UtilUUID.UUIDDEFECTO);
+		setTipoIdentificacion(new SolicitarTipoIdentificacion());
 		setIdentificacion(UtilTexto.VACIO);
 		setPrimerNombre(UtilTexto.VACIO);
 		setSegundoNombre(UtilTexto.VACIO);
@@ -36,7 +36,7 @@ public class SolicitarCliente {
 		setFechaNacimiento(UtilFecha.FECHADEFECTO);
 	}
     
-	public SolicitarCliente(final UUID id, final UUID tipoIdentificacion, final String identificacion,
+	public SolicitarCliente(final UUID id, final SolicitarTipoIdentificacion tipoIdentificacion, final String identificacion,
 			final String primerNombre, final String segundoNombre, final String primerApellido, final String segundoApellido, final String correoElectronico, final Boolean correoElectronicoConfirmado,
 			final String numeroTelefonoMovil, final Boolean numeroTelefonoMovilConfirmado, final Date fechaNacimiento) {
 		setId(id);
@@ -57,7 +57,7 @@ public class SolicitarCliente {
 		return id;
 	}
 	
-	public final UUID getTipoIdentificacion() {
+	public final SolicitarTipoIdentificacion getTipoIdentificacion() {
 		return tipoIdentificacion;
 	}
 	
@@ -105,7 +105,7 @@ public class SolicitarCliente {
 		this.id = id;
 	}
 
-	public final void setTipoIdentificacion(final UUID tipoIdentificacion) {
+	public final void setTipoIdentificacion(final SolicitarTipoIdentificacion tipoIdentificacion) {
 		this.tipoIdentificacion = tipoIdentificacion;
 	}
 

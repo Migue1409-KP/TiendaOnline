@@ -57,7 +57,7 @@ public class ClienteControllerImpl implements ClienteController{
 			var dto = ClienteDTO.crear()
 					.setId(id)
 					.setTipoIdentificacion(TipoIdentificacionDTO.crear()
-							.setId(req.getTipoIdentificacion()))
+							.setId(req.getTipoIdentificacion().getId()))
 					.setIdentificacion(req.getIdentificacion())
 					.setNombreCompleto(NombreCompletoClienteDTO.crear()
 							.setPrimerNombre(req.getPrimerNombre())
@@ -148,7 +148,7 @@ public class ClienteControllerImpl implements ClienteController{
 		try {
 			RegistrarClienteFacade facade = new RegistrarClienteFacade();
 			var dto = ClienteDTO.crear()
-					.setTipoIdentificacion(TipoIdentificacionDTO.crear().setId(req.getTipoIdentificacion()))
+					.setTipoIdentificacion(TipoIdentificacionDTO.crear().setId(req.getTipoIdentificacion().getId()))
 					.setIdentificacion(req.getIdentificacion())
 					.setNombreCompleto(
 							NombreCompletoClienteDTO.crear().setPrimerNombre(req.getPrimerNombre()).setSegundoNombre(req.getSegundoNombre())
